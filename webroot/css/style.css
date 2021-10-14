@@ -1,0 +1,16 @@
+header{
+    background-color: aquamarine;
+    text-align: center;
+    font-size: large;
+}
+
+footer{
+    background-color: burlywood;
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+}
+
+body{
+    margin: 15px;
+}
