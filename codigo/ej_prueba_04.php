@@ -67,7 +67,7 @@
         for($i = $numCentimos; $i > 0; $i--)
         {
 
-            for($j = 0; $j <)
+            //for($j = 0; $j <)
 
 
             if($i > 200)
