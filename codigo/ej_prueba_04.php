@@ -22,21 +22,20 @@
 
     <h1>Ejercicio de arrays</h1>
 
+    <p>
+        <b>Realiza un programa que le introduzca un valor de un producto con 2 decimales y posteriormente
+        un valor con el que pagar por encima.
+        Muestra el número mínimo de monedas con las que puedes devolver el cambio.</b>
+    </p>
+
     <!-- PHP -->
     <?php
-
     
         $precio = $_GET['precio'];
         $pago = $_GET['pago'];
     
         echo 'El precio es: ' . $precio . '€<br>';
         echo 'Se paga con la cantidad de: ' . $pago . '€<br><br>';
-
-       // $precio = 6.33;
-       // $pago = 10;
-        
-       // Iterador
-        $i = 0;
 
         // Número de centimos a devolver
         $numCentimos = 0;
@@ -48,8 +47,10 @@
             $numCentimos++;
         }
 
-        echo 'Se deben devolver ' . $numCentimos . ' céntimos.<br><br>';
+        // Se calcula la diferencia
+        $diferencia = $pago - $precio;
 
+        echo 'Se deben devolver ' . $numCentimos . ' céntimos ('  . $diferencia . '€).<br><br>';
 
         // contadores de monedas
         $numMoneda2e = 0;
@@ -61,67 +62,105 @@
         $numMoneda2c = 0;
         $numMoneda1c = 0;
 
-        $j = 0;
+        // Iterador
+        $i = 0;
 
-        // Se calcula el numero de monedas
-        for($i = $numCentimos; $i > 0; $i--)
+        // 2€
+        while($numCentimos >= 200)
         {
-
-            //for($j = 0; $j <)
-
-
-            if($i > 200)
-            {
-                $numCentimos -= 200;
-                $numMoneda2e++;
-            }
-            else if($i > 100)
-            {
-                $numCentimos -= 100;
-                $numMoneda1e++;
-            }
-            else if($i > 50)
-            {
-                $numCentimos -= 500;
-                $numMoneda50c++;
-            }
-            else if($i > 20)
-            {
-                $numCentimos -= 200;
-                $numMoneda20c++;
-            }
-            else if($i > 10)
-            {
-                $numCentimos -= 10;
-                $numMoneda10c++;
-            }
-            else if($i > 5)
-            {
-                $numCentimos -= 5;
-                $numMoneda5c++;
-            }
-            else if($i > 2)
-            {
-                $numCentimos -= 2;
-                $numMoneda2c++;
-            }
-            else if($i > 1)
-            {
-                $numCentimos -= 1;
-                $numMoneda1c++;
-            }
-            
+            $numMoneda2e++;
+            $numCentimos -= 200;
         }
 
+        if($numMoneda2e > 0)
+        {
+            echo 'Se deben devolver ' . $numMoneda2e . ' monedas de 2€.<br>';
+        }
 
-        echo 'Se deben devolver ' . $numMoneda2e . ' monedas de 2€.<br>';
-        echo 'Se deben devolver ' . $numMoneda1e . ' monedas de 1€.<br>';
-        echo 'Se deben devolver ' . $numMoneda50c . ' monedas de 50 céntimos.<br>';
-        echo 'Se deben devolver ' . $numMoneda20c . ' monedas de 20 céntimos.<br>';
-        echo 'Se deben devolver ' . $numMoneda10c . ' monedas de 10 céntimos.<br>';
-        echo 'Se deben devolver ' . $numMoneda5c . ' monedas de 5 céntimos.<br>';
-        echo 'Se deben devolver ' . $numMoneda2c . ' monedas de 2 céntimos.<br>';
-        echo 'Se deben devolver ' . $numMoneda1c . ' monedas de 1 céntimos.<br>';
+        // 1€
+        while($numCentimos >= 100)
+        {
+            $numMoneda1e++;
+            $numCentimos -= 100;
+        }
+
+        if($numMoneda1e > 0)
+        {
+            echo 'Se deben devolver ' . $numMoneda1e . ' monedas de 1€.<br>';
+        }
+
+        // 0.5€
+        while($numCentimos >= 50)
+        {
+            $numMoneda50c++;
+            $numCentimos -= 50;
+        }
+
+        if($numMoneda50c > 0)
+        {
+            echo 'Se deben devolver ' . $numMoneda50c . ' monedas de 0.5€.<br>';
+        }
+
+        // 0.2€
+        while($numCentimos >= 20)
+        {
+            $numMoneda20c++;
+            $numCentimos -= 20;
+        }
+
+        if($numMoneda20c > 0)
+        {
+            echo 'Se deben devolver ' . $numMoneda20c . ' monedas de 0.2€.<br>';
+        }
+
+        // 0.1€
+        while($numCentimos >= 10)
+        {
+            $numMoneda10c++;
+            $numCentimos -= 10;
+        }
+
+        if($numMoneda10c > 0)
+        {
+            echo 'Se deben devolver ' . $numMoneda10c . ' monedas de 0.1€.<br>';
+        }
+
+        // 0.05€
+        while($numCentimos >= 5)
+        {
+            $numMoneda5c++;
+            $numCentimos -= 5;
+        }
+
+        if($numMoneda5c > 0)
+        {
+            echo 'Se deben devolver ' . $numMoneda5c . ' monedas de 0.05€.<br>';
+        }
+
+        // 0.02€
+        while($numCentimos >= 2)
+        {
+            $numMoneda2c++;
+            $numCentimos -= 2;
+        }
+
+        if($numMoneda2c > 0)
+        {
+            echo 'Se deben devolver ' . $numMoneda2c . ' monedas de 0.02€.<br>';
+        }
+
+        // 0.01€
+        while($numCentimos >= 1)
+        {
+            $numMoneda1c++;
+            $numCentimos -= 1;
+        }
+
+        if($numMoneda1c > 0)
+        {
+            echo 'Se deben devolver ' . $numMoneda1c . ' monedas de 0.01€.<br>';
+        }
+       
     ?>
 
 </body>
