@@ -4,7 +4,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Ej prueba - 04</title>
+
+    <!-- CSS -->
+    <link href="/Tema3/webroot/css/style.css" rel="stylesheet" type="text/css">
 </head>
 <body>
     
@@ -20,7 +23,7 @@
 
     -->
 
-    <h1>Ejercicio de arrays</h1>
+    <h1>Ejercicio de bucles for</h1>
 
     <p>
         <b>Realiza un programa que le introduzca un valor de un producto con 2 decimales y posteriormente
