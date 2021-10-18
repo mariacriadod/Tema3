@@ -94,6 +94,7 @@
         }
 
 
+<<<<<<< HEAD
         // Arrays asociativos //
         echo "<h2>Arrays asociativos</h2>";
 
@@ -126,6 +127,8 @@
         }
         
        
+=======
+>>>>>>> f59dcc56bfa6e80754460b4bf0b9fced31de4fc5
     ?>
 
 </body>
