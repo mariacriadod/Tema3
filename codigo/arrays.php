@@ -93,8 +93,6 @@
             echo "<p>" . $value . "</p>";
         }
 
-
-<<<<<<< HEAD
         // Arrays asociativos //
         echo "<h2>Arrays asociativos</h2>";
 
@@ -126,9 +124,62 @@
             echo "<p>" . $value . "</p>";
         }
         
+
+        // Array Multidimensional //
+        echo "<h2>Array Multidimensional</h2>";
+
+        $tabla = array();
+
+        // Creo las tablas de multiplicar (hago solo hasta la del 3)
+        for ($i=0; $i < 3; $i++)
+        { 
+        
+            $tabla[$i] = array();
+
+            for ($j=0; $j < 10; $j++) { 
+                
+                $tabla[$i][$j] = $i * $j;
+            }
+            
+        }
+
+        // Lo muestro
+        echo "<pre>";
+        print_r($tabla);
+        echo "</pre><br>";
+
+
+        // Array multidimensional que tb es array asociativo //
+        echo "<h2>Array Multidimensional y Asociativo</h2>";
+
+        $ciclos = array(
+
+            "DAW" => array("PR" => "Programacion",
+                      "BD" => "Bases de Datos",
+                       "DWES" => "Desarrollo Web Entorno Servidor"
+                    ),
+            
+            "DAM" => array("PR" => "Programacion",
+                    "BD" => "Bases de Datos",
+                     "DWEC" => "Desarrollo Web Entorno Cliente"
+                  )
+        );
+
+         // Lo imprimo despues de modificar
+         foreach($ciclos as $key => $value)
+         {
+
+            echo "<p><b>" . $key . "</b></p>";
+
+            foreach ($ciclos[$key] as $clave => $valor) 
+            {
+
+                echo "<p>" . $clave . " = " . $valor . "</p>";
+
+            }
+
+         }
        
-=======
->>>>>>> f59dcc56bfa6e80754460b4bf0b9fced31de4fc5
     ?>
 
 </body>
