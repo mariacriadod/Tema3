@@ -162,24 +162,95 @@
             "DAM" => array("PR" => "Programacion",
                     "BD" => "Bases de Datos",
                      "DWEC" => "Desarrollo Web Entorno Cliente"
-                  )
+                ),
+
+            "ASIR" => array("ASO" => "Administracion de Sistemas",
+                  "BD" => "Bases de Datos",
+                   "DWES" => "Desarrollo Web Entorno Servidor"
+                )
         );
 
-         // Lo imprimo despues de modificar
-         foreach($ciclos as $key => $value)
-         {
+        // 1ª forma de imprimirlo
+        echo "<h3>1ª forma de imprimirlo</h3>";
+        echo "<pre>";
+        print_r($ciclos);
+        echo "</pre><br>";
+        
+         // 2ª forma de imprimirlo
+        echo "<h3>2ª forma de imprimirlo</h3>";
+        foreach($ciclos as $key => $value)
+        {
 
             echo "<p><b>" . $key . "</b></p>";
 
-            foreach ($ciclos[$key] as $clave => $valor) 
-            {
+        foreach ($ciclos[$key] as $clave => $valor) 
+        {
 
-                echo "<p>" . $clave . " = " . $valor . "</p>";
+             echo "<p>" . $clave . " = " . $valor . "</p>";
 
-            }
+        }
 
-         }
+        }
        
+
+         //// Funciones de un array ////
+         echo "<h2>Funciones para recorrer un array</h2>";
+
+        // Array actual //
+        echo "<h3>Array actual (por defecto el primero) -- Funcion <i>current</i></h3>";
+        print_r (current($ciclos));
+         
+        // Array siguiente
+        echo "<h3>Array siguiente -- Funcion <i>next</i></h3>";
+        print_r (next($ciclos));
+
+        // Array actual //
+        echo "<h3>Array actual (ahora la pos ha cambiado) -- Funcion <i>current</i></h3>";
+        print_r (current($ciclos));
+         
+        // Si ahora hacemos un while each, mostrará a partir de la posicion en la que se encuentra el array
+        echo "<h3>Se muestra el array --  <i>while each</i></h3>";
+
+        /*  // Hay que comentarlo pq si no la pos es la ultima y no se muestra la 2ª forma
+        while ($ciclo = each($ciclos))
+        {
+            // echo $ciclo . "<br>";
+            echo "<pre>";
+            print_r($ciclo);
+            echo "</pre><br>";
+        }
+        */
+        
+        /* Nota:
+            - Aparece como duplicado 
+            (con los 4 elementos, tanto los 0 y 1, como key y value)
+
+        */
+
+        echo "<h4>2ª forma</h4>";
+
+        while ($ciclo = each($ciclos))
+        {
+            echo "<pre>";
+            echo "El ciclo es: " . $ciclo[0] . " y las asignaturas son: ";
+            print_r($ciclo[1]);
+            echo "</pre><br>";
+        }
+
+        // Cambiar la posicion del puntero del array (ahora vuelve al principio y si se muestran)
+        echo "<h3>Se reinicia la posicion del puntero -- Funcion <i>reset</i></h3>";
+
+        reset($ciclos);
+
+        while ($ciclo = each($ciclos))
+        {
+            echo "<pre>";
+            echo "El ciclo es: " . $ciclo[0] . " y las asignaturas son: ";
+            print_r($ciclo[1]);
+            echo "</pre><br>";
+        }
+
+
     ?>
 
 </body>
