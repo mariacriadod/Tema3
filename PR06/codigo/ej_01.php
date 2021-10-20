@@ -28,6 +28,9 @@
                 </ul>
             </li>
         </ul>
+
+        <p>El script lo único que debe hacer es mostrar una tabla similar a la de abajo, recogiendo los
+        datos del array multidimensional que habéis creado</p>
     </h2>
 
     <!-- PHP -->
