@@ -132,22 +132,23 @@
             $ultVal = 1;
 
             // Por cada fila creo un array
-            for ($j=0; $j < 3; $j++) 
+            $matriz[$i] = array();
+
+            for ($j=0; $j < $tamañoMatriz; $j++) 
             { 
 
-                if($j == 0)
+                // Si se encuentra en la primera fila...
+                if(($j == 0)||($i == 0))
                 {
-
-                    $nuevoArray = array();
-
-                    $nuevoArray[$j] = $ultVal;
+                    // Se establece el valor 1 por defecto
+                    $matriz[$i][$j] = 1;
                 }
+                // Si no...
                 else
                 {
-                    $nuevoArray[$j] = $matriz[$i - 1][$j] + $matriz[$i][$j - 1];
+                    // Coge los valores anteriores
+                    $matriz[$i][$j] = $matriz[$i - 1][$j] + $matriz[$i][$j - 1];
                 }
-               
-
             }
             
 
