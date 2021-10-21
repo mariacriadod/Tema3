@@ -183,12 +183,12 @@
 
             echo "<p><b>" . $key . "</b></p>";
 
-        foreach ($ciclos[$key] as $clave => $valor) 
-        {
+            foreach ($ciclos[$key] as $clave => $valor) 
+            {
 
-             echo "<p>" . $clave . " = " . $valor . "</p>";
+                echo "<p>" . $clave . " = " . $valor . "</p>";
 
-        }
+            }
 
         }
        

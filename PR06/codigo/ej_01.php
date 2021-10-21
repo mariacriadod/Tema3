@@ -46,7 +46,7 @@
     <?php
 
         // Creo el array manualmente
-        $array_tabla = array(
+        $liga = array(
 
             // Zamora vs ...
             "Zamora" => array(
@@ -107,8 +107,47 @@
 
         // Imprimo el array
         echo '<pre>';
-        print_r($array_tabla);
+        print_r($liga);
         echo '<pre>';
+
+        echo "<br><br><br>";
+        echo "";
+
+        ////// SE CREA LA TABLA /////
+
+        // Array que contendrá los equipos locales
+        $equiposLocales = array();
+
+        // Se recorre el array dinamicamente para crear la tabla
+        foreach ($liga as $key => $value) 
+        {
+            // Se guarda cada equipo local en el array creado previamente
+            $equiposLocales[$key] = $value;
+
+            echo "<b>" . $key . "</b><br>";
+
+            $partidosLocal = array();
+
+            // Recorro cada equipoLocal
+            foreach ($liga[$key] as $clave => $valor) 
+            {
+                // Guardo los partidos (rivales) que tiene este local
+                $partidosLocal[$clave] = $valor;
+
+                echo "<i>" . $clave . "</i><br>";
+
+                // Recorro los equipos visitantes de este equipo local
+                foreach ($partidosLocal[$clave] as $key => $value) 
+                {
+                    echo "&nbsp;&nbsp;&nbsp;" . $key . ": " . $value . "<br>";
+                }
+
+                echo "<br>";
+
+            }
+            
+        }
+
     ?>
 
     <!-- Footer informativo -->
