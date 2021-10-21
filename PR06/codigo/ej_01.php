@@ -118,6 +118,67 @@
         // Array que contendrá los equipos locales
         $equiposLocales = array();
 
+        echo "<table>";
+        echo "<thead>";
+        echo "<td>Equipos</td>";
+
+        // Se recorre el array dinamicamente para crear la tabla
+        foreach ($liga as $key => $value) 
+        {
+            // Se guarda cada equipo local en el array creado previamente
+            $equiposLocales[$key] = $value;
+
+            //echo "<b>" . $key . "</b><br>";
+
+            echo "<td>";
+                    echo $key;
+            echo"</td>";
+
+        }
+
+        echo "</thead>";
+
+        // Se recorre el array dinamicamente para crear la tabla
+        foreach ($liga as $key => $value) 
+        {
+            // Se guarda cada equipo local en el array creado previamente
+            //$equiposLocales[$key] = $value;
+
+            echo "<tr>";
+
+                echo"<td>",$key,"</td>" ;
+
+            echo "</tr>"; 
+
+            $partidosLocal = array();
+
+            // Recorro cada equipoLocal
+            foreach ($liga[$key] as $clave => $valor) 
+            {
+                // Guardo los partidos (rivales) que tiene este local
+                $partidosLocal[$clave] = $valor;
+
+                //echo "<i>" . $clave . "</i><br>";
+
+                // Recorro los equipos visitantes de este equipo local
+                foreach ($partidosLocal[$clave] as $key => $value) 
+                {
+                   // echo "&nbsp;&nbsp;&nbsp;" . $key . ": " . $value . "<br>";
+                }
+
+               // echo "<br>";
+
+            }
+            
+        }
+
+        echo"</table>";
+
+
+        echo "<br><br><br><br><br>"
+        ///  Se muestra todo sin ser tabla
+        /*
+
         // Se recorre el array dinamicamente para crear la tabla
         foreach ($liga as $key => $value) 
         {
@@ -147,7 +208,7 @@
             }
             
         }
-
+        */
     ?>
 
     <!-- Footer informativo -->
