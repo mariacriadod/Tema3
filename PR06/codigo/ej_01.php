@@ -58,7 +58,7 @@
                 "Ávila" => array("Resultado" => "4-1","Tarj_Rojas" => 0,"Tarj_Amarillas" => 0,"Penaltis" => 0),
 
                 // Valladolid
-                "Valladolid" => array("Resultado" => "1-2","Tarj_Rojas" => 1,"Tarj_Amarillas" => 1,"Penaltis" => 1),
+                "Valladolid" => array("Resultado" => "1-2","Tarj_Rojas" => 1,"Tarj_Amarillas" => 1,"Penaltis" => 1)
 
             ),
 
@@ -72,7 +72,7 @@
                 "Ávila" => array("Resultado" => "4-1","Tarj_Rojas" => 0,"Tarj_Amarillas" => 0,"Penaltis" => 0),
 
                 // Valladolid
-                "Valladolid" => array("Resultado" => "1-2","Tarj_Rojas" => 1,"Tarj_Amarillas" => 2,"Penaltis" => 1),
+                "Valladolid" => array("Resultado" => "1-2","Tarj_Rojas" => 1,"Tarj_Amarillas" => 2,"Penaltis" => 1)
 
             ),
 
@@ -86,7 +86,7 @@
                 "Salamanca" => array("Resultado" => "1-3","Tarj_Rojas" => 1,"Tarj_Amarillas" => 3,"Penaltis" => 0),
 
                 // Valladolid
-                "Valladolid" => array("Resultado" => "1-3","Tarj_Rojas" => 1,"Tarj_Amarillas" => 0,"Penaltis" => 1),
+                "Valladolid" => array("Resultado" => "1-3","Tarj_Rojas" => 1,"Tarj_Amarillas" => 0,"Penaltis" => 1)
 
             ),
 
@@ -100,11 +100,12 @@
                 "Salamanca" => array("Resultado" => "3-1","Tarj_Rojas" => 0,"Tarj_Amarillas" => 0,"Penaltis" => 0),
 
                 // Ávila
-                "Ávila" => array("Resultado" => "1-2","Tarj_Rojas" => 1,"Tarj_Amarillas" => 1,"Penaltis" => 2),
+                "Ávila" => array("Resultado" => "1-2","Tarj_Rojas" => 1,"Tarj_Amarillas" => 1,"Penaltis" => 2)
 
             )
         );
 
+        /*
         // Imprimo el array
         echo '<pre>';
         print_r($liga);
@@ -112,25 +113,28 @@
 
         echo "<br><br><br>";
         echo "";
+        */
 
         ////// SE CREA LA TABLA /////
-
         // Array que contendrá los equipos locales
         $equiposLocales = array();
 
-        echo "<table>";
+        echo "<table border='1'";
         echo "<thead>";
-        echo "<td>Equipos</td>";
+        echo "<td><b>Equipos</b></td>";
 
+        $equiposLocales = array();
+        
         // Se recorre el array dinamicamente para crear la tabla
         foreach ($liga as $key => $value) 
         {
             // Se guarda cada equipo local en el array creado previamente
-            $equiposLocales[$key] = $value;
+            array_push($equiposLocales,$key);
 
             //echo "<b>" . $key . "</b><br>";
 
             echo "<td>";
+                    // Muestro los equipos locales (fila horizontal)
                     echo $key;
             echo"</td>";
 
@@ -138,49 +142,59 @@
 
         echo "</thead>";
 
+       
         // Se recorre el array dinamicamente para crear la tabla
-        foreach ($liga as $key => $value) 
+        foreach ($liga as $equipoLocal => $arrayVisitantes) 
         {
-            // Se guarda cada equipo local en el array creado previamente
-            //$equiposLocales[$key] = $value;
-
+            
             echo "<tr>";
+                // Muestro los equipos locales (fila vertical)
+                echo"<td>",$equipoLocal,"</td>" ;
 
-                echo"<td>",$key,"</td>" ;
 
-            echo "</tr>"; 
-
-            $partidosLocal = array();
-
-            // Recorro cada equipoLocal
-            foreach ($liga[$key] as $clave => $valor) 
+            // Contador de posicion del equipo visitante
+            $pos = 0;
+           
+            foreach ($arrayVisitantes as $equipoVisitante => $datosPartido) 
             {
-                // Guardo los partidos (rivales) que tiene este local
-                $partidosLocal[$clave] = $valor;
 
-                //echo "<i>" . $clave . "</i><br>";
-
-                // Recorro los equipos visitantes de este equipo local
-                foreach ($partidosLocal[$clave] as $key => $value) 
+                if($equiposLocales[$pos] == $equipoLocal)
                 {
-                   // echo "&nbsp;&nbsp;&nbsp;" . $key . ": " . $value . "<br>";
+                    
+                    echo"<td>";
+                    echo "</td>"; 
+
                 }
+                    echo"<td>";
+                    
+                    
+                // Recorro los datos del partido
+                foreach ($datosPartido as $variables => $value) 
+                {
 
-               // echo "<br>";
+                    echo $value . "|";
 
+                }
+                echo "</td>" ;
+                
+                // Por cada equipo visitante, incremento el contador
+                $pos++;
+                
             }
             
-        }
+            echo "</tr>"; 
 
+        }
+        
         echo"</table>";
 
-
         echo "<br><br><br><br><br>"
+
+
         ///  Se muestra todo sin ser tabla
         /*
-
         // Se recorre el array dinamicamente para crear la tabla
-        foreach ($liga as $key => $value) 
+        foreach($liga as $key => $value) 
         {
             // Se guarda cada equipo local en el array creado previamente
             $equiposLocales[$key] = $value;
@@ -209,6 +223,7 @@
             
         }
         */
+        
     ?>
 
     <!-- Footer informativo -->
