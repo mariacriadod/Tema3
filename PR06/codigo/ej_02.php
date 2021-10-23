@@ -38,6 +38,68 @@
     <!-- PHP -->
     <?php
 
+        // Creo el array
+        $liga = array(
+
+            // Zamora vs ...
+            "Zamora" => array(
+
+                // Salamanca
+                "Salamanca" => array("Resultado" => "3-2","Tarj_Rojas" => 1,"Tarj_Amarillas" => 0,"Penaltis" => 0),
+
+                // Ávila
+                "Ávila" => array("Resultado" => "4-1","Tarj_Rojas" => 0,"Tarj_Amarillas" => 0,"Penaltis" => 0),
+
+                // Valladolid
+                "Valladolid" => array("Resultado" => "1-2","Tarj_Rojas" => 1,"Tarj_Amarillas" => 1,"Penaltis" => 1)
+
+            ),
+
+            // Salamanca vs ...
+            "Salamanca" => array(
+
+                // Zamora
+                "Zamora" => array("Resultado" => "3-2","Tarj_Rojas" => 1,"Tarj_Amarillas" => 0,"Penaltis" => 0),
+
+                // Ávila
+                "Ávila" => array("Resultado" => "4-1","Tarj_Rojas" => 0,"Tarj_Amarillas" => 0,"Penaltis" => 0),
+
+                // Valladolid
+                "Valladolid" => array("Resultado" => "1-2","Tarj_Rojas" => 1,"Tarj_Amarillas" => 2,"Penaltis" => 1)
+
+            ),
+
+            // Ávila vs ...
+            "Ávila" => array(
+
+                // Zamora
+                "Zamora" => array("Resultado" => "3-2","Tarj_Rojas" => 1,"Tarj_Amarillas" => 0,"Penaltis" => 2),
+
+                // Salamanca
+                "Salamanca" => array("Resultado" => "1-3","Tarj_Rojas" => 1,"Tarj_Amarillas" => 3,"Penaltis" => 0),
+
+                // Valladolid
+                "Valladolid" => array("Resultado" => "1-3","Tarj_Rojas" => 1,"Tarj_Amarillas" => 0,"Penaltis" => 1)
+
+            ),
+
+            // Valladolid vs ...
+            "Valladolid" => array(
+
+                // Zamora
+                "Zamora" => array("Resultado" => "3-2","Tarj_Rojas" => 1,"Tarj_Amarillas" => 0,"Penaltis" => 0),
+
+                // Salamanca
+                "Salamanca" => array("Resultado" => "3-1","Tarj_Rojas" => 0,"Tarj_Amarillas" => 0,"Penaltis" => 0),
+
+                // Ávila
+                "Ávila" => array("Resultado" => "1-2","Tarj_Rojas" => 1,"Tarj_Amarillas" => 1,"Penaltis" => 2)
+
+            )
+        );
+
+        
+
     ?>
 
     <!-- Footer informativo -->

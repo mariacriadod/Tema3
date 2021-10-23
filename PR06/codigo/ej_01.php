@@ -188,7 +188,7 @@
         
         echo"</table>";
 
-        echo "<br><br><br><br><br>"
+        echo "<br><br>";
 
 
         ///  Se muestra todo sin ser tabla
@@ -223,6 +223,111 @@
             
         }
         */
+
+        //////////////////////////////////////////
+        //// EJERCICIO 2
+        //////////////////////////////////////////
+        echo "<h2>Ejercicio 2</h2>";
+
+        // Imprimo la 1ª fila horizontal
+        echo "<table border='1'";
+        echo "<thead>";
+        echo "<td><b>Equipos</b></td>";
+        echo "<td><b>Puntos</b></td>";
+        echo "<td><b>Goles a favor</b></td>";
+        echo "<td><b>Goles en contra</b></td>";
+
+        $equiposLocales = array();
+        
+
+         // Se recorre el array dinamicamente para crear la tabla
+         foreach ($liga as $key => $value) 
+         {
+             // Se guarda cada equipo local en el array creado previamente
+             array_push($equiposLocales,$key);
+ 
+         }
+ 
+         echo "</thead>";
+ 
+        
+         // Se recorre el array dinamicamente para crear la tabla
+         // Por cada equipo local...
+         foreach ($liga as $equipoLocal => $arrayVisitantes) 
+         {
+             
+             echo "<tr>";
+                 // Muestro los equipos locales (fila vertical)
+                 echo"<td>",$equipoLocal,"</td>" ;
+ 
+ 
+             // Contador de posicion del equipo visitante
+             $pos = 0;
+            
+            // Por cada equipo visitante...
+             foreach ($arrayVisitantes as $equipoVisitante => $datosPartido) 
+             {
+                
+                 echo"<td>";
+                     
+                 // Array que contendrá todos los datos de un partido
+                 $array_datos = array();
+                     
+                 // Recorro los datos del partido
+                 foreach ($datosPartido as $variables => $value) 
+                 {
+ 
+                    //$array_datos = explode("|",)
+                     echo $value . "|";
+
+                    // Guardo los datos de este partido en el array
+                     array_push($array_datos,$value);
+ 
+                 }
+                 echo "</td>" ;
+
+                // Guardo el resultado de este partido en una cadena
+                $cadenaDatos = $array_datos[0];
+
+                // Separo los goles de este partido
+                $array_goles = explode("-",$cadenaDatos);
+
+                $golAfavor = $array_goles[0];
+                $golEnContra = $array_goles[1];
+
+                $puntos = 0;
+
+                // Reparto de puntos
+                // Si se gana...
+                if($golAfavor > $golEnContra)
+                {
+                    $puntos += 3;
+                }
+                // Si se empata...
+                elseif ($golAfavor == $golEnContra) 
+                {
+                    $puntos += 1;
+                }
+                // Si se pierde...
+                elseif ($golAfavor < $golEnContra) 
+                {
+                    // No se hace nada (simplemente lo hago para entenderme)
+                    $puntos += 0;
+                }
+
+                echo "F: " . $golAfavor . " - C: " . $golEnContra . ". Pts: " . $puntos . "<br>";
+                
+                 // Por cada equipo visitante, incremento el contador
+                 $pos++;
+                 
+             }
+             
+             echo "</tr>"; 
+ 
+         }
+         
+         echo"</table>";
+ 
         
     ?>
 
