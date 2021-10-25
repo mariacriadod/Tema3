@@ -119,9 +119,9 @@
         // Array que contendrá los equipos locales
         $equiposLocales = array();
 
-        echo "<table border='1'";
+        echo "<table border='1'>";
         echo "<thead>";
-        echo "<td><b>Equipos</b></td>";
+        echo "<td style='background-color: red;'><b>Equipos</b></td>";
 
         $equiposLocales = array();
         
@@ -133,10 +133,10 @@
 
             //echo "<b>" . $key . "</b><br>";
 
-            echo "<td>";
+            echo "<td><b>";
                     // Muestro los equipos locales (fila horizontal)
                     echo $key;
-            echo"</td>";
+            echo"</b></td>";
 
         }
 
@@ -149,7 +149,7 @@
             
             echo "<tr>";
                 // Muestro los equipos locales (fila vertical)
-                echo"<td>",$equipoLocal,"</td>" ;
+                echo"<td><b>",$equipoLocal,"</b></td>" ;
 
 
             // Contador de posicion del equipo visitante
@@ -168,13 +168,46 @@
                     echo"<td>";
                     
                     
+                $contadorDatos = 0;
+
+                echo "<div style='text-align:center;'>";
+
                 // Recorro los datos del partido
                 foreach ($datosPartido as $variables => $value) 
                 {
 
-                    echo $value . "|";
+                    
+                    if($contadorDatos == 0)
+                    {
+                        echo "<div style='display:block;background-color:green;';>";
+                        echo $value . "";
+                        echo "</div>";
 
+                    }
+                    else if($contadorDatos == 1)
+                    {
+                        echo "<div style='display:inline-block;background-color:red;padding:3%'>";
+                        echo $value . "";
+                        echo "</div>";
+                    }
+                    else if($contadorDatos == 2)
+                    {
+                        echo "<div style='display:inline-block;background-color:yellow;padding:3%'>";
+                        echo $value . "";
+                        echo "</div>";
+                    }
+                    else if($contadorDatos == 3)
+                    {
+                        echo "<div style='display:inline-block;background-color:orange;padding:3%'>";
+                        echo $value . "";
+                        echo "</div>";
+                    }
+                    
+                    $contadorDatos++;
                 }
+
+                echo "</div>";
+
                 echo "</td>" ;
                 
                 // Por cada equipo visitante, incremento el contador
@@ -188,7 +221,7 @@
         
         echo"</table>";
 
-        echo "<br><br><br><br><br>"
+        echo "<br><br>";
 
 
         ///  Se muestra todo sin ser tabla
@@ -223,7 +256,9 @@
             
         }
         */
+
         
+ 
     ?>
 
     <!-- Footer informativo -->
