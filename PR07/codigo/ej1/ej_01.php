@@ -7,7 +7,7 @@
     <title>Ejercicio 1</title>
 
     <!-- Enlace al css -->
-    <link rel="stylesheet" href="../webroot/css/style.css">
+    <link rel="stylesheet" href="../../webroot/css/style.css">
 
     <!-- @author - Ismael Maestre Carracedo  -->
 </head>
@@ -16,11 +16,11 @@
 
     <!-- Enlace que accede a otra pagina php que muestra/imprime el codigo de la misma -->
     <!-- Incluir en todos los .php -->
-    <a target="_blank" id="idVerCodigo" title="Vér el código PHP" href="codigoPHP.php?paginaPHP=<?
-        $pagina = basename($_SERVER['SCRIPT_FILENAME']);
+    <a target="_blank" id="idVerCodigo" title="Vér el código PHP" href="../codigoPHP.php?paginaPHP=<?
+        $pagina = "ej1/" . basename($_SERVER['SCRIPT_FILENAME']);
         echo $pagina;?>"
     >
-        <img src="../img/icono_ver_codigo.png" alt="suu" width="35px" height="35px"></img>
+        <img src="../../img/icono_ver_codigo.png" alt="suu" width="35px" height="35px"></img>
     </a>
 
     <!-- PHP -->
