@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ejercicio 2</title>
+    <title>Ejercicio 6</title>
 
     <!-- Enlace al css -->
     <link rel="stylesheet" href="../../webroot/css/style.css">
@@ -12,7 +12,7 @@
     <!-- @author - Ismael Maestre Carracedo  -->
 </head>
 <body>
-    <h1>Ejercicio 2</h1>
+    <h1>Ejercicio 6</h1>
 
     <!-- Enlace que accede a otra pagina php que muestra/imprime el codigo de la misma -->
     <!-- Incluir en todos los .php -->
@@ -27,27 +27,7 @@
     <!-- PHP -->
     <?php
 
-        // Se importa el fichero que contiene las funciones
-        require_once("./funciones_ej2.php");
-
-        echo "<h2>Haz una función que genere números aleatorios que se le pase como parámetros:</h2>";
-
-        // a)
-        echo "<h3>a) Array para que lo rellene con los números</h3>";
-
-        // b)
-        echo "<h3>b) Número mínimo incluido</h3>";
-
-        // c)
-        echo "<h3>c) Número máximo incluido</h3>";
-
-        // d)
-        echo "<h3>d) Número de números generados</h3>";
-
-        // e)
-        echo "<h3>e) True si puede repetirse / False si no puede repetirse</h3>";
-
- 
+       
     ?>
 
     <!-- Footer informativo -->
