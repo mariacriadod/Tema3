@@ -48,6 +48,23 @@
         echo "<h3>e) True si puede repetirse / False si no puede repetirse</h3>";
 
  
+        // Creo el array vacío
+        $arrayNumeros = array();
+
+        // Creo los parámetros que se le van a pasar a la función
+        $numMin = 2;
+        $numMax = 13;
+        $numValores = 8;
+        $repetirse = true;
+
+        // Llamo a la función que me devolverá un array rellenado aleatoriamente
+            // en función de los parámetros pasados
+        $arrayAleatorio = generaAleatorioArray($arrayNumeros,$numMin,$numMax,$numValores,$repetirse);
+
+        // Imprimo el array
+        echo "<pre>";
+        print_r($arrayAleatorio);
+        echo "</pre>";
     ?>
 
     <!-- Footer informativo -->
