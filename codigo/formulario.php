@@ -13,14 +13,50 @@
     
     <h1>Formulario</h1>
 
-    <!-- Formulario por GET -->
-    <form action="./procesa.php" method="get" name="formulario">
+    <!-- Formulario por GET (los datos van en la url) -->
+    <form action="./procesa.php" method="post" name="formulario">
 
         <!-- Input de Texto -->
         <p>
-            <label>Nombre y Apellidos:</label>
+            <label for="idNombre">Nombre:</label>
             <input type="text" name="nombre" id="idNombre" size="40">
         </p>
+
+        <!-- Input de Password -->
+        <p>
+            <label for="idPass">Contraseña:</label>
+            <input type="password" name="pass" id="idPass">
+        </p>
+
+        <!-- Input de tipo RadioButton -->
+        <p><b>Género</b></p>
+        <label for="idMasculino">Masculino
+            <input type="radio" name="radioButtonsGenero" id="idMasculino" value="masculino">
+        </label>
+
+        <label for="idFemenino">Femenino
+            <input type="radio" name="radioButtonsGenero" id="idFemenino" value="femenino">
+        </label>
+
+        <!-- Input de tipo select -->
+        <p><b>Ciclo</b></p>
+        <select name="ciclo" id="idCiclo" id="idCiclo">
+            <option value="dam">DAM</option>
+            <option value="daw">DAW</option>
+        </select>
+
+        <!-- Input de tipo check -->
+        <p><b>Aficiones</b></p>
+        <input type="checkbox" name="Aficiones[]" id="idFutbol" value="futbol">
+        <label for="idFutbol">Futbol</label>
+
+        <input type="checkbox" name="Aficiones[]" id="idBar" value="bar">
+        <label for="idBar">Bar</label>
+
+        <input type="checkbox" name="Aficiones[]" id="idPadel" value="padel">
+        <label for="idPadel">Padel</label>
+
+        <br><br>
 
         <!-- Input de tipo Submit -->
         <input type="submit" value="Enviar los Datos">
@@ -28,6 +64,8 @@
         <!-- Input de tipo Reset -->
         <input type="reset" value="Limpiar">
     </form>
+
+    <!-- Formulario por POSt (los datos en la url) -->
 
 </body>
 </html>

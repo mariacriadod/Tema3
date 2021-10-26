@@ -18,6 +18,10 @@
     <!-- PHP -->
     <?php
 
+        /*
+        // Enviado a través de GET //
+        echo "<h3>Enviado a través de GET</h3>";;
+
         // Imprimo lo que se ha enviado por la url (array)
         echo "<pre>";
         print_r($_GET);
@@ -25,7 +29,38 @@
 
         echo "<br>";
 
-        echo "La variable de nombre es: <b>" . $_GET["nombre"] . "</b>";
+        echo "La variable de nombre es: <b>" . $_GET["nombre"] . "</b><br>";
+        echo "La variable de contraseña es: <b>" . $_GET["pass"] . "</b>";
+
+            // Nota: nunca se debe enviar por GET (inseguro)
+        */
+
+        // Enviado a través de POST //
+        echo "<h3>Enviado a través de POST</h3>";;
+
+        // Imprimo lo que se ha enviado por la url (array)
+        echo "<pre>";
+        print_r($_POST);
+        echo "</pre>";
+
+        echo "<br>";
+
+        echo "La variable de nombre es: <b>" . $_POST["nombre"] . "</b><br>";
+        echo "La variable de contraseña es: <b>" . $_POST["pass"] . "</b><br>";
+        echo "El género es: <b>" . $_POST["radioButtonsGenero"] . "</b><br>";
+        echo "El ciclo es: <b>" . $_POST["ciclo"] . "</b><br>";
+
+        echo "Las aficiones son:<br>";
+
+        foreach ($_POST["Aficiones"] as $value)
+        { 
+            echo $value . "<br>";
+
+        }
+
+
+
+
     ?>
 
 </body>
