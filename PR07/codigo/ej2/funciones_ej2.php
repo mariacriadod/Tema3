@@ -8,12 +8,40 @@
     {
 
 
-        for($i = 0; $i < $numValores; $i++)
+        // Si se pueden repetir
+        if($repetirse == true)
         {
-            $aleatorio = generaAleatorio($numMin,$numMax);
+            for($i = 0; $i < $numValores; $i++)
+            {  
+                $aleatorio = generaAleatorio($numMin,$numMax);
 
-            $array[$i] = $aleatorio;
+                $array[$i] = $aleatorio;
+            }
         }
+        // Si no...
+        else if($repetirse == false)
+        {
+
+            for($i = 0; $i < $numValores; $i++)
+            {  
+                // Si existe...
+                if(isset($array[$i]))
+                {
+
+                }
+                // Si no...
+                else
+                {
+
+                }
+                
+                $aleatorio = generaAleatorio($numMin,$numMax);
+
+                $array[$i] = $aleatorio;
+            }
+
+        }
+        
 
         return $array;
 
@@ -23,6 +51,13 @@
     function generaAleatorio($min,$max)
     {
         return rand($min,$max);
+    }
+
+    // Funcion que comprueba si un valor está repetido en un array
+    function compruebaRepe($valor, $array)
+    {
+
+
     }
 
 ?>
