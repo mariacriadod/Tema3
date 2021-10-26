@@ -26,10 +26,40 @@
     <!-- PHP -->
     <?php
 
+        // Se importa el fichero que contiene las funciones
+        require_once("./funciones_ej1.php");
+
         echo '<h2>Crea tu propio fichero de php que tenga las funciones de:</h2>';
         
         // a)
         echo "<h3>a) br() Pinta un br</h3>";
+
+        echo "Antes del salto de línea.";
+        br();
+        echo "Despues del salto de línea.";
+        
+        // b) 
+        echo "<h3>b) h1( cadena ) Pinta la cadena entre dos h1</h3>";
+
+        h1("Cadena pintada entre dos h1");
+
+        // c) 
+        echo "<h3>c) p(cadena) Pinta la cadena entre <p></h3>";
+
+        p("Cadena 1");
+        p("Cadena 2");
+
+        // d) 
+        echo "<h3>d) funcion_self() Devuelve el fichero actual</h3>";
+
+        echo "El fichero actual es: " . funcion_self();
+
+        // e) 
+        echo "<h3>e) dni(numeroDNI) Se introduce el DNI y devuelve la letra que le corresponde</h3>";
+
+        $numeroDNI = 71212725;
+
+        echo "La letra correspondiente al DNI <i>" . $numeroDNI . "</i> es: <b>" . dni($numeroDNI) . "</b>";
 
     ?>
 
