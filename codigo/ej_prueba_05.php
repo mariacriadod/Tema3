@@ -21,6 +21,15 @@
 
     <h1>Años bisiestos</h1>
 
+    <!-- Enlace que accede a otra pagina php que muestra/imprime el codigo de la misma -->
+    <!-- Incluir en todos los .php -->
+    <a target="_blank" id="idVerCodigo" title="Vér el código PHP" href="codigoPHP.php?paginaPHP=<?
+        $pagina = basename($_SERVER['SCRIPT_FILENAME']);
+        echo $pagina;?>"
+    >
+        <img src="../img/icono_ver_codigo.png" alt="suu" width="35px" height="35px"></img>
+    </a>
+    
     <p>
         <b>Escriba un programa que pida un año y que escriba si es bisiesto o no.
             Los años bisiestos son múltiplos de 4, pero los múltiplos de 100 no lo son,
