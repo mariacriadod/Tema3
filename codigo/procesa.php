@@ -28,8 +28,6 @@
     <!-- PHP -->
     <?php
 
-
-
         /*
         // Enviado a través de GET //
         echo "<h3>Enviado a través de GET</h3>";;
@@ -57,6 +55,7 @@
 
         echo "<br>";
 
+        // Imprimo los datos enviados desde el formulario
         echo "La variable de nombre es: <b>" . $_POST["nombre"] . "</b><br>";
         echo "La variable de contraseña es: <b>" . $_POST["pass"] . "</b><br>";
         echo "El género es: <b>" . $_POST["radioButtonsGenero"] . "</b><br>";
@@ -66,12 +65,9 @@
 
         foreach ($_POST["Aficiones"] as $value)
         { 
-            echo $value . "<br>";
+            echo "&nbsp;&nbsp;&nbsp;<b>-" . $value . "</b><br>";
 
         }
-
-
-
 
     ?>
 
