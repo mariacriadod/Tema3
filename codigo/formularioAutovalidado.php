@@ -35,6 +35,7 @@
         }
         */
 
+        /*
         // 2ª opcion - Ver si existe el REQUEST "Enviado"
         if(isset($_REQUEST['Enviado']))   // Tambien se puede hacer con $_REQUEST (recoge tanto post como get)
         {
@@ -54,26 +55,86 @@
                 echo "<br>La contraseña es: " . $_REQUEST['pass'];
             }
 
-            // Si se ha seleccionado uno de los check
+            // Si se ha seleccionado uno de los radioButton
             if(isset($_REQUEST['radioButtonsGenero']))
             {
                 echo "<br>Ha seleccionado el genero " . $_REQUEST['radioButtonsGenero'];
             }
 
-            // Si se ha abierto la lista y se ha seleccinado uno
+            // Si se ha abierto la lista y se ha seleccinado 'no' (la primera opcion)
             if($_REQUEST['ciclo'] == "no")
             {
-                echo "Debe seleccionar un ciclo...";
+                echo "<br>Debe seleccionar un ciclo...";
             }
 
+            // Se validan los check... 
+            // Si no existe 'aficiones' ...
+            if(!isset($_REQUEST['Aficiones']))
+            {
+                echo "<br>No ha seleccionado ninguna afición...";
+            }
+            // Nº max de valores seleccionados
+            else if(count($_REQUEST['Aficiones']) > 3)
+            {
+                echo "<br>Debe elegir como mucho 3.";
+            }
+
+            // Nota: La variable superglobal que guarda los ficheros es $_FILES 
+            //print_r($_FILES);
+
+            // Se valida el selector de archivos //
+            // Si existe el archivo...
+            if(isset($_FILES))
+            {
+                // Se le dice donde se quiere que se guarde
+                $rutaGuardado = "../uploads/";
+
+                // Se le establece el nombre al archivo a guardar
+                $rutaConNombreFichero = $rutaGuardado .  $_FILES['archivo']['name'];
+
+                // Si se mueve el fichero del sitio temporal a la ruta especificada...
+                if(move_uploaded_file($_FILES['archivo']['tmp_name'],$rutaConNombreFichero))
+                {
+                    echo "<br>El fichero se ha guardado correctamente.<br>";
+
+                    // Si subo una imagen, la guardo y la cargo en el html //
+                    echo "La ruta es: <b>" . $rutaConNombreFichero . "</b><br>";
+
+                    echo "<img src='" . $rutaConNombreFichero . "' alt='Imagen' width='100px' height='100px'>";
+                    //<img src="pic_trulli.jpg" alt="Italian Trulli">
+
+                }
+                else
+                {
+                    echo "<br>Error al guardar el fichero.";
+                }
+
+            }
+
+            // Nota: para guardar hay que darle permisos a la carpeta donde se va a guardar
+                // 'chmod 777 nombreCarpeta'
             
         }
+        */
+
+
+        // Si el formulario se ha enviado...
+        if(isset($_REQUEST['enviado']))
+        {
+            echo "<br>Se ha enviado el formulario.";
+        }
+        // Si no...
+        else
+        {
+            
+        
 
     ?>
 
     <!-- Formulario por POST -->
-    <!-- Le indico en el actio que me redirija a este mismo fichero para validarlo -->
-    <form action="<?php echo $_SERVER['PHP_SELF'];?>" method="post" name="formulario">
+    <!-- Le indico en el action que me redirija a este mismo fichero para validarlo -->
+    <!-- enctype="multipart/form-data" para permitir que se puedan cargar archivos -->
+    <form action="<?php echo $_SERVER['PHP_SELF'];?>" method="post" name="formulario" enctype="multipart/form-data">
 
         <!-- Input de Texto -->
         <p>
@@ -116,6 +177,14 @@
         <input type="checkbox" name="Aficiones[]" id="idPadel" value="padel">
         <label for="idPadel">Padel</label>
 
+        <!-- Selector de archivos -->
+        <p><b>Selector de Archivos</b></p>
+
+        <p>
+            <label for="idArchivo">Subir documento:</label>
+            <input type="file" name="archivo" id="idArchivo" required>
+        </p>
+
         <br><br>
 
         <!-- Input de tipo Submit -->
@@ -125,6 +194,12 @@
         <!-- Input de tipo Reset -->
         <input type="reset" value="Limpiar">
     </form>
+
+    <?
+
+        }
+
+    ?>
 
 </body>
 </html>
