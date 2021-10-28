@@ -69,7 +69,7 @@
 
 <!-- Formulario por POST -->
     <!-- Le indico en el actio que me redirija a este mismo fichero para validarlo -->
-    <form action="<?php echo $_SERVER['PHP_SELF'];?>" method="post" name="formulario">
+    <form action="<?php echo $_SERVER['PHP_SELF'];?>" method="post" name="formulario" id="idFormulario">
 
         <!-- Nombre - Alfabetico -->
         <p>
@@ -153,16 +153,28 @@
         <input type="checkbox" name="checks[]" id="idcheck6" value="Check 6">
         <label for="idcheck6">Check 6</label>
 
-        <!-- Teléfono - Numérico -->
+        <!-- Teléfono - Tel -->
         <p>
             <label for="idTelefono">Teléfono:</label>
-            <input type="number" name="telefono" id="idTelefono" size="40" placeholder="Teléfono" required>
+            <input type="tel" name="telefono" id="idTelefono" size="40" placeholder="Teléfono" required>
         </p>
 
          <!-- E-mail  -->
          <p>
             <label for="idEmail">E-mail:</label>
             <input type="email" name="email" id="idEmail" size="40" placeholder="E-mail" required>
+        </p>
+
+        <!-- Contraseña - Input de Password -->
+        <p>
+            <label for="idPass">Contraseña:</label>
+            <input type="password" name="pass" id="idPass" placeholder="Contraseña" required>
+        </p>
+
+        <!-- Selector de archivos -->
+        <p>
+            <label for="idArchivo">Subir documento:</label>
+            <input type="file" name="archivo" id="ididArchivo" required>
         </p>
 
         <br><br>
