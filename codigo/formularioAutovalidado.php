@@ -119,7 +119,7 @@
 
 
         // Si el formulario se ha enviado...
-        if(isset($_REQUEST['enviado']))
+        if(!isset($_REQUEST['enviado']))
         {
             echo "<br>Se ha enviado el formulario.";
         }
@@ -127,7 +127,7 @@
         else
         {
             
-        
+            // Para que si se envia el formulatio desaparezca el resto
 
     ?>
 
@@ -195,6 +195,7 @@
         <input type="reset" value="Limpiar">
     </form>
 
+    <!-- Para que si se envia el formulatio desaparezca el resto -->
     <?
 
         }
