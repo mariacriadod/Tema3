@@ -35,7 +35,7 @@
         }
         */
 
-        /*
+        
         // 2ª opcion - Ver si existe el REQUEST "Enviado"
         if(isset($_REQUEST['Enviado']))   // Tambien se puede hacer con $_REQUEST (recoge tanto post como get)
         {
@@ -48,7 +48,7 @@
             {
                 echo "<br>El nombre es: " . $_REQUEST['nombre'];
             }
-
+            
             // Si existe la contraseña... (validando texto)
             if(!empty($_REQUEST['pass']))
             {
@@ -115,19 +115,22 @@
                 // 'chmod 777 nombreCarpeta'
             
         }
-        */
+        
 
-
+        /*
         // Si el formulario se ha enviado...
         if(!isset($_REQUEST['enviado']))
         {
             echo "<br>Se ha enviado el formulario.";
+            header();
         }
         // Si no...
         else
         {
             
             // Para que si se envia el formulatio desaparezca el resto
+        }   ////////////// Se quita
+        */
 
     ?>
 
@@ -139,7 +142,23 @@
         <!-- Input de Texto -->
         <p>
             <label for="idNombre">Nombre:</label>
-            <input type="text" name="nombre" id="idNombre" size="40">
+            <input type="text" name="nombre" id="idNombre" size="40" value="<?php
+            
+                if((!empty($_REQUEST['nombre'])) && isset($_REQUEST['Enviado']))
+                {
+                    echo $_REQUEST['nombre'];
+                }
+
+            ?>">
+
+            <?php
+
+                if((empty($_REQUEST['nombre'])) && isset($_REQUEST['Enviado'])){?>
+                    <label for="idNombre" style="color:red;">Debe haber un nombre</label>
+            <?}
+
+            ?>
+
         </p>
 
         <!-- Input de Password -->
@@ -198,7 +217,7 @@
     <!-- Para que si se envia el formulatio desaparezca el resto -->
     <?
 
-        }
+        // Se pone // }
 
     ?>
 

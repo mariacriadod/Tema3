@@ -26,7 +26,19 @@
     <!-- PHP -->
     <?php
 
-        // Se validan los datos
+        // Se importa el fichero que contiene las funciones
+        require_once("./funcionesValidarForm.php");
+
+        // Se validan los datos del formulario
+        if(validaFormulario())
+        {
+            echo "EL FORMULARIO SE HA ENVIADO CORRECTAMENTE";
+        }
+        else
+        {
+            echo "ERROR AL ENVIAR EL FORMULARIO";
+        }
+
         /*
         if(isset($_REQUEST['Enviado']))   // Tambien se puede hacer con $_REQUEST (recoge tanto post como get)
         {
@@ -58,11 +70,9 @@
                 echo "Debe seleccionar un ciclo...";
             }
 
-            
         }
-
         */
-
+        
 
        
     ?>
@@ -74,7 +84,24 @@
         <!-- Nombre - Alfabetico -->
         <p>
             <label for="idNombre">Nombre:</label>
-            <input type="text" name="nombre" id="idNombre" size="40" placeholder="Nombre" required>
+
+            <input type="text" name="nombre" id="idNombre" size="40" placeholder="Nombre" value="
+            
+                <?php
+
+                    if(validaNombreCorrecto($_REQUEST['nombre']))
+                        echo $_REQUEST['nombre'];
+                ?>">
+
+                <?php
+
+                    if(validaNombreIncorrecto($_REQUEST['nombre']))
+                    {?>
+                        <label for="idNombre" style="color:red;">Debe haber un nombre</label>
+                <?  }
+
+                ?>
+
         </p>
 
         <!-- Nombre Opcional -  Alfabetico Opcional -->
@@ -86,7 +113,7 @@
         <!-- Apellido - Alfanumérico -->
         <p>
             <label for="idApellido">Apellido:</label>
-            <input type="text" name="apellido" id="idApellido" size="40" placeholder="Apellido"  required>
+            <input type="text" name="apellido" id="idApellido" size="40" placeholder="Apellido">
         </p>
 
         <!-- Apellido Opcional - Alfanumérico Opcional -->
@@ -98,7 +125,7 @@
         <!-- Fecha -->
         <p>
             <label for="idFecha">Fecha:</label>
-            <input type="date" name="fecha" id="idfecha" size="40"  required>
+            <input type="date" name="fecha" id="idfecha" size="40">
         </p>
 
         <!-- Fecha Opcional -->
@@ -125,7 +152,7 @@
         <!-- Input de tipo Select -->
         <p><b>Selecciona una opción:</b></p>
 
-        <select name="ciclo" id="idCiclo" id="idCiclo" required>
+        <select name="ciclo" id="idCiclo" id="idCiclo">
             <option value="no">Seleccione una opción</option>
             <option value="opcion1">1ª Opción</option>
             <option value="opcion2">2ª Opción</option>
@@ -142,7 +169,7 @@
         <label for="idcheck2">Check 2</label>
 
         <input type="checkbox" name="checks[]" id="idcheck3" value="Check 3">
-        <label for="idcheck2">Check 3</label>
+        <label for="idcheck3">Check 3</label>
 
         <input type="checkbox" name="checks[]" id="idcheck4" value="Check 4">
         <label for="idcheck4">Check 4</label>
@@ -156,25 +183,25 @@
         <!-- Teléfono - Tel -->
         <p>
             <label for="idTelefono">Teléfono:</label>
-            <input type="tel" name="telefono" id="idTelefono" size="40" placeholder="Teléfono" required>
+            <input type="tel" name="telefono" id="idTelefono" size="40" placeholder="Teléfono">
         </p>
 
          <!-- E-mail  -->
          <p>
             <label for="idEmail">E-mail:</label>
-            <input type="email" name="email" id="idEmail" size="40" placeholder="E-mail" required>
+            <input type="email" name="email" id="idEmail" size="40" placeholder="E-mail">
         </p>
 
         <!-- Contraseña - Input de Password -->
         <p>
             <label for="idPass">Contraseña:</label>
-            <input type="password" name="pass" id="idPass" placeholder="Contraseña" required>
+            <input type="password" name="pass" id="idPass" placeholder="Contraseña">
         </p>
 
         <!-- Selector de archivos -->
         <p>
             <label for="idArchivo">Subir documento:</label>
-            <input type="file" name="archivo" id="ididArchivo" required>
+            <input type="file" name="archivo" id="ididArchivo">
         </p>
 
         <br><br>
@@ -187,6 +214,7 @@
         <input type="reset" value="Limpiar">
     </form>
 
+    <br><br><br>
 
     <!-- Footer informativo -->
     <footer>&copy Ismael Maestre</footer>
