@@ -39,41 +39,6 @@
             echo "ERROR AL ENVIAR EL FORMULARIO";
         }
 
-        /*
-        if(isset($_REQUEST['Enviado']))   // Tambien se puede hacer con $_REQUEST (recoge tanto post como get)
-        {
-            // Informo 
-            //echo "El formulario ha sido enviado.<br>";
-
-            // Valido los datos //
-            // Si existe el nombre... (validando texto)
-            if(!empty($_REQUEST['nombre']))
-            {
-                echo "<br>El nombre es: " . $_REQUEST['nombre'];
-            }
-
-            // Si existe la contraseña... (validando texto)
-            if(!empty($_REQUEST['pass']))
-            {
-                echo "<br>La contraseña es: " . $_REQUEST['pass'];
-            }
-
-            // Si se ha seleccionado uno de los check
-            if(isset($_REQUEST['radioButtonsGenero']))
-            {
-                echo "<br>Ha seleccionado el genero " . $_REQUEST['radioButtonsGenero'];
-            }
-
-            // Si se ha abierto la lista y se ha seleccinado uno
-            if($_REQUEST['ciclo'] == "no")
-            {
-                echo "Debe seleccionar un ciclo...";
-            }
-
-        }
-        */
-        
-
        
     ?>
 
@@ -89,6 +54,7 @@
             
                 <?php
 
+                    // Modificar la funcion para hacerlo en una linea
                     if(validaNombreCorrecto($_REQUEST['nombre']))
                         echo $_REQUEST['nombre'];
                 ?>">
@@ -96,9 +62,12 @@
                 <?php
 
                     if(validaNombreIncorrecto($_REQUEST['nombre']))
-                    {?>
+                    {   
+                        // Modificar la funcion para imprimirlo todo
+                        ?>
                         <label for="idNombre" style="color:red;">Debe haber un nombre</label>
-                <?  }
+                        <?  
+                }
 
                 ?>
 
