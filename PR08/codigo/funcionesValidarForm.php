@@ -9,18 +9,41 @@
 
         $correcto;
 
-        if(validaEnviado($_REQUEST['Enviado']))
+        if(isset($_REQUEST['Enviado']))
         {
-            // nombre
-            /*
-            if((validaNombreCorrecto($_REQUEST['nombre']))&&((validaNombreIncorrecto($_REQUEST['nombre']))))
-            {
+            $correcto = true;
 
-            }
-            */
-            //validaSiVacio($_REQUEST('nombre'));
+            // nombre
+            if(empty($_REQUEST['nombre']))
+                $correcto = false;
+
+            // Apellido
+            if(empty($_REQUEST['apellido']))
+                $correcto = false;
+
+            // Fecha
+            if(empty($_REQUEST['fecha']))
+                $correcto = false;
+
+            // Radio
+            if(!isset($_REQUEST['radioButtons']))
+                $correcto = false;
+
+            // Lista desplegable
+            if($_REQUEST['ciclo'] == "no")
+                $correcto = false;
+
+            // Checks
+            if((count($_REQUEST['checks']) > 3)||(count($_REQUEST['checks']) < 1))
+                $correcto = false;
+
 
         }
+        else{
+            $correcto = false;
+        }
+
+        return $correcto;
     }
 
     // Función que valida que se ha enviado el formulario
@@ -43,16 +66,22 @@
     // Funcion que valida si está vacío un campo
     function validaSiVacio($campo)
     {
+        $correcto;
+
         // Si no está vacío
         if(!empty($campo))
         {
             // Muestro el valor del campo en el input
             echo $campo;
+
+            $correcto = true;
         }
         else
         {
-
+            $correcto = false;
         }
+
+        return $correcto;
 
     }
 
@@ -67,12 +96,6 @@
         }
        
        
-   }
-
-   // Función que valida la fecha
-   function validaFecha()
-   {
-
    }
 
    // Funcion que valida los radioButton
@@ -95,7 +118,7 @@
     }
    }
 
-   // 
+   // Funcion que guarda el valor de los radioButtons
    function compruebaRadio($radio,$valor)
    {
        if($radio == $valor)

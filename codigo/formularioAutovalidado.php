@@ -117,7 +117,7 @@
         }
         
 
-        /*
+        
         // Si el formulario se ha enviado...
         if(!isset($_REQUEST['enviado']))
         {
@@ -130,7 +130,7 @@
             
             // Para que si se envia el formulatio desaparezca el resto
         }   ////////////// Se quita
-        */
+        
 
     ?>
 

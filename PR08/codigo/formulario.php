@@ -29,19 +29,22 @@
         // Se importa el fichero que contiene las funciones
         require_once("./funcionesValidarForm.php");
 
-        /*
+        
         // Se validan los datos del formulario
+        // Si se ha rellenado correctamente...
         if(validaFormulario())
         {
             echo "EL FORMULARIO SE HA ENVIADO CORRECTAMENTE";
+
+            $nuevaURL = "../codigo/muestraFormulario.php";
+
+            header("Location: " . $nuevaURL);
         }
+        // Si no...
         else
         {
-            echo "ERROR AL ENVIAR EL FORMULARIO";
+            echo "<b>ERROR AL ENVIAR EL FORMULARIO</b>";
         }
-
-       */
-      print_r($_REQUEST);
 
     ?>
 
@@ -117,7 +120,6 @@
 
             <?php
 
-                echo $_REQUEST['fecha'];
                 // En caso de que esté vacío, se muestra un error
                 imprimeError("idFecha",$_REQUEST['fecha'],"Debe introducir una fecha");
 
@@ -147,7 +149,7 @@
 
         <?php
 
-            //validaRadioButton($_REQUEST['radioButtons'],"idRadio3","Debe seleccionar al menos un radioButton");
+            validaRadioButton($_REQUEST['radioButtons'],"idRadio3","Debe seleccionar al menos un radioButton");
         ?>
 
         <!-- Input de tipo Select -->
@@ -230,13 +232,14 @@
             ?>">
         </p>
 
-        <!-- Selector de archivos -->
+        <!-- Selector de archivos 
         <p>
             <label for="idArchivoLabel">Subir documento:</label>
             <input type="file" name="archivo" id="idArchivo">
         </p>
+        -->
 
-        <?php guardaArchivo("idArchivoLabel"); ?>
+        <?php //guardaArchivo("idArchivoLabel"); ?>
 
         <br><br>
 
