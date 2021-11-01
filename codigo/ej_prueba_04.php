@@ -25,6 +25,15 @@
 
     <h1>Ejercicio de bucles for</h1>
 
+    <!-- Enlace que accede a otra pagina php que muestra/imprime el codigo de la misma -->
+    <!-- Incluir en todos los .php -->
+    <a target="_blank" id="idVerCodigo" title="Vér el código PHP" href="codigoPHP.php?paginaPHP=<?
+        $pagina = basename($_SERVER['SCRIPT_FILENAME']);
+        echo $pagina;?>"
+    >
+        <img src="../img/icono_ver_codigo.png" alt="suu" width="35px" height="35px"></img>
+    </a>
+    
     <p>
         <b>Realiza un programa que le introduzca un valor de un producto con 2 decimales y posteriormente
         un valor con el que pagar por encima.
