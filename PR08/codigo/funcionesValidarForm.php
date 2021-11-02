@@ -220,5 +220,67 @@
     }
 
    }
+
+   // Función que muestra los datos del formulario
+   function muestraDatosFormulario()
+   {
+         // nombre
+        if(!empty($_REQUEST['nombre']))
+            echo "El nombre es: <b>" . $_REQUEST["nombre"] . "</b><br>";
+
+         // nombre opcional
+         if(!empty($_REQUEST['nombreOpcional']))
+         echo "El nombre opcional es: <b>" . $_REQUEST["nombreOpcional"] . "</b><br>";
+
+        // Apellido
+        if(!empty($_REQUEST['apellido']))
+            echo "El apellido es: <b>" . $_REQUEST["apellido"] . "</b><br>";
+
+        // Apellido opcional
+        if(!empty($_REQUEST['apellidoOpcional']))
+            echo "El apellido opcional es: <b>" . $_REQUEST["apellidoOpcional"] . "</b><br>";
+
+        // Fecha
+        if(!empty($_REQUEST['fecha']))
+            echo "La fecha es: <b>" . $_REQUEST["fecha"] . "</b><br>";
+
+        // Fecha opcional
+        if(!empty($_REQUEST['fechaOpcional']))
+             echo "La fecha opcional es: <b>" . $_REQUEST["fechaOpcional"] . "</b><br>";
+
+        // Radio
+        if(isset($_REQUEST['radioButtons']))
+            echo "La opcion (radioButton) es: <b>" . $_REQUEST["radioButtons"] . "</b><br>";
+
+        // Lista desplegable
+        if(!$_REQUEST['ciclo'] == "no")
+        echo "La sleccion de lista es: <b>" . $_REQUEST["ciclo"] . "</b><br>";
+
+        // Checks
+        if((count($_REQUEST['checks']) <= 3)&&(count($_REQUEST['checks']) >= 1))
+        {
+            echo "Las aficiones son:<br>";
+
+            foreach ($_POST["checks"] as $value)
+            { 
+                echo "&nbsp;&nbsp;&nbsp;<b>-" . $value . "</b><br>";
+
+            }
+        }
+
+        // Teléfono        
+        if(!empty($_REQUEST['telefono']))
+            echo "El telefono es: <b>" . $_REQUEST["telefono"] . "</b><br>";
+
+        // Email
+        if(!empty($_REQUEST['email']))
+            echo "El email es: <b>" . $_REQUEST["email"] . "</b><br>";
+
+        // Pass
+        if(!empty($_REQUEST['pass']))
+            echo "La contraseña es: <b>" . $_REQUEST["pass"] . "</b><br>";
+
+            
+   }
    
 ?>
