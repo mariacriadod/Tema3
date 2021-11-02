@@ -26,7 +26,29 @@
     <!-- PHP -->
     <?php
 
-       
+        echo "<pre>";
+        print_r($_REQUEST);
+        echo "</pre>";
+
+        // Se importa el fichero que contiene las funciones
+        require_once("./funcionesValidarForm.php");
+
+        
+        // Se validan los datos del formulario
+        // Si se ha rellenado correctamente...
+        if(validaFormulario())
+        {
+            // Función que muestra los datos del formulario 
+
+            // NO FUNCIONA
+            muestraDatosFormulario();
+        }
+        // Si no...
+        else
+        {
+            echo "<b>ERROR AL RECIBIR EL FORMULARIO</b>";
+        }
+
     ?>
 
     <!-- Footer informativo -->
