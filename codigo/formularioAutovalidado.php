@@ -121,8 +121,8 @@
         // Si el formulario se ha enviado...
         if(!isset($_REQUEST['enviado']))
         {
-            echo "<br>Se ha enviado el formulario.";
-            header();
+            echo "<br>NO Se ha enviado el formulario.";
+            //header();
         }
         // Si no...
         else
@@ -155,7 +155,8 @@
 
                 if((empty($_REQUEST['nombre'])) && isset($_REQUEST['Enviado'])){?>
                     <label for="idNombre" style="color:red;">Debe haber un nombre</label>
-            <?}
+            <?php
+                }
 
             ?>
 
@@ -215,7 +216,7 @@
     </form>
 
     <!-- Para que si se envia el formulatio desaparezca el resto -->
-    <?
+    <?php
 
         // Se pone // }
 
