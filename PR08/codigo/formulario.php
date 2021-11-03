@@ -16,7 +16,7 @@
 
     <!-- Enlace que accede a otra pagina php que muestra/imprime el codigo de la misma -->
     <!-- Incluir en todos los .php -->
-    <a target="_blank" id="idVerCodigo" title="Vér el código PHP" href="codigoPHP.php?paginaPHP=<?
+    <a target="_blank" id="idVerCodigo" title="Vér el código PHP" href="codigoPHP.php?paginaPHP=<?php
         $pagina = basename($_SERVER['SCRIPT_FILENAME']);
         echo $pagina;?>"
     >
@@ -36,9 +36,13 @@
         {
             echo "EL FORMULARIO SE HA ENVIADO CORRECTAMENTE";
 
+            /*
+
+            // Posteriormente
             $nuevaURL = "../codigo/muestraFormulario.php";
 
             header("Location: " . $nuevaURL);
+            */
         }
         // Si no...
         else
@@ -56,19 +60,17 @@
         <p>
             <label for="idNombre">Nombre:</label>
 
-            <input type="text" name="nombre" id="idNombre" size="40" placeholder="Nombre" value="
-            
-                <?php
+            <input type="text" name="nombre" id="idNombre" size="40" placeholder="Nombre" value="<?php
 
                     // Si no está vacío, se guarda el texto introducido
-                    validaSiVacio($_REQUEST['nombre']);
+                    validaSiVacio('nombre');
                    
                 ?>">
 
                 <?php
 
                     // En caso de que esté vacío, se muestra un error
-                    imprimeError("idNombre",$_REQUEST['nombre'],"Debe introducir un nombre");
+                    imprimeError("idNombre",'nombre',"Debe introducir un nombre");
 
                 ?>
 
@@ -83,19 +85,17 @@
         <!-- Apellido - Alfanumérico -->
         <p>
             <label for="idApellido">Apellido:</label>
-            <input type="text" name="apellido" id="idApellido" size="40" placeholder="Apellido" value="
-            
-            <?php
+            <input type="text" name="apellido" id="idApellido" size="40" placeholder="Apellido" value="<?php
 
                 // Si no está vacío, se guarda el texto introducido
-                validaSiVacio($_REQUEST['apellido']);
+                validaSiVacio('apellido');
                
             ?>">
 
             <?php
 
                 // En caso de que esté vacío, se muestra un error
-                imprimeError("idApellido",$_REQUEST['apellido'],"Debe introducir un apellido");
+                imprimeError("idApellido",'apellido',"Debe introducir un apellido");
 
             ?>
         </p>
@@ -109,19 +109,17 @@
         <!-- Fecha -->
         <p>
             <label for="idFecha">Fecha:</label>
-            <input type="date" name="fecha" id="idfecha" size="40"value="
-            
-            <?php
+            <input type="date" name="fecha" id="idfecha" size="40" value="<?php
 
                 // Si no está vacío, se guarda el texto introducido
-                validaSiVacio($_REQUEST['fecha']);
+                validaSiVacio('fecha');
                
             ?>">
 
             <?php
 
                 // En caso de que esté vacío, se muestra un error
-                imprimeError("idFecha",$_REQUEST['fecha'],"Debe introducir una fecha");
+                imprimeError("idFecha",'fecha',"Debe introducir una fecha");
 
             ?>
         </p>
@@ -136,20 +134,20 @@
         <p><b>Radio Button Obligatorio</b></p>
 
         <label for="idRadio1">Opción 1
-            <input type="radio" name="radioButtons" id="idRadio1" value="1" <?php compruebaRadio($_REQUEST['radioButtons'],1); ?>>
+            <input type="radio" name="radioButtons" id="idRadio1" value="1" <?php compruebaRadio('radioButtons',1); ?>>
         </label>
 
         <label for="idRadio2">Opción 2
-            <input type="radio" name="radioButtons" id="idRadio2" value="2" <?php compruebaRadio($_REQUEST['radioButtons'],2); ?>>
+            <input type="radio" name="radioButtons" id="idRadio2" value="2" <?php compruebaRadio('radioButtons',2); ?>>
         </label>
 
         <label for="idRadio3">Opción 3
-            <input type="radio" name="radioButtons" id="idRadio3" value="3" <?php compruebaRadio($_REQUEST['radioButtons'],3); ?>>
+            <input type="radio" name="radioButtons" id="idRadio3" value="3" <?php compruebaRadio('radioButtons',3); ?>>
         </label>
 
         <?php
 
-            validaRadioButton($_REQUEST['radioButtons'],"idRadio3","Debe seleccionar al menos un radioButton");
+            validaRadioButton('radioButtons',"idRadio3","Debe seleccionar al menos un radioButton");
         ?>
 
         <!-- Input de tipo Select -->
@@ -157,50 +155,48 @@
 
         <select name="ciclo" id="idCiclo" id="idCiclo">
             <option value="no">Seleccione una opción</option>
-            <option value="opcion1" <?php guardaValorLista($_REQUEST['ciclo'],"opcion1"); ?>>1ª Opción</option>
-            <option value="opcion2" <?php guardaValorLista($_REQUEST['ciclo'],"opcion2"); ?>>2ª Opción</option>
-            <option value="opcion3" <?php guardaValorLista($_REQUEST['ciclo'],"opcion3"); ?>>3ª Opción</option>
+            <option value="opcion1" <?php guardaValorLista('ciclo',"opcion1"); ?>>1ª Opción</option>
+            <option value="opcion2" <?php guardaValorLista('ciclo',"opcion2"); ?>>2ª Opción</option>
+            <option value="opcion3" <?php guardaValorLista('ciclo',"opcion3"); ?>>3ª Opción</option>
         </select>
 
         <?php
             // Compruebo que no se haya seleccionado la primera opcion
-            compruebaLista($_REQUEST['ciclo'],"idCiclo","Debe seleccionar otra opción");
+            compruebaLista('ciclo',"idCiclo","Debe seleccionar otra opción");
         ?>
 
         <!-- Input de tipo check -->
         <p><b>Elije al menos 1 y máximo 3</b></p>
 
-        <input type="checkbox" name="checks[]" id="idcheck1" value="Check 1" <?php guardaValorCheck($_REQUEST['checks'],"Check 1",0); ?>>
+        <input type="checkbox" name="checks[]" id="idcheck1" value="Check 1" <?php guardaValorCheck('checks',"Check 1",0); ?>>
         <label for="idcheck1">Check 1</label>
 
-        <input type="checkbox" name="checks[]" id="idcheck2" value="Check 2" <?php guardaValorCheck($_REQUEST['checks'],"Check 2",1); ?>>
+        <input type="checkbox" name="checks[]" id="idcheck2" value="Check 2" <?php guardaValorCheck('checks',"Check 2",1); ?>>
         <label for="idcheck2">Check 2</label>
 
-        <input type="checkbox" name="checks[]" id="idcheck3" value="Check 3" <?php guardaValorCheck($_REQUEST['checks'],"Check 3",2); ?>>
+        <input type="checkbox" name="checks[]" id="idcheck3" value="Check 3" <?php guardaValorCheck('checks',"Check 3",2); ?>>
         <label for="idcheck3">Check 3</label>
 
-        <input type="checkbox" name="checks[]" id="idcheck4" value="Check 4" <?php guardaValorCheck($_REQUEST['checks'],"Check 4",3); ?>>
+        <input type="checkbox" name="checks[]" id="idcheck4" value="Check 4" <?php guardaValorCheck('checks',"Check 4",3); ?>>
         <label for="idcheck4">Check 4</label>
 
-        <input type="checkbox" name="checks[]" id="idcheck5" value="Check 5" <?php guardaValorCheck($_REQUEST['checks'],"Check 5",4); ?>>
+        <input type="checkbox" name="checks[]" id="idcheck5" value="Check 5" <?php guardaValorCheck('checks',"Check 5",4); ?>>
         <label for="idcheck5">Check 5</label>
 
-        <input type="checkbox" name="checks[]" id="idcheck6" value="Check 6" <?php guardaValorCheck($_REQUEST['checks'],"Check 6",5); ?>>
+        <input type="checkbox" name="checks[]" id="idcheck6" value="Check 6" <?php guardaValorCheck('checks',"Check 6",5); ?>>
         <label for="idcheck6">Check 6</label>
 
         <?php 
-            compruebaCheck($_REQUEST["checks"],"idcheck6","Debe seleccionar entre 1 y 3 campos"); 
+            compruebaCheck("checks","idcheck6","Debe seleccionar entre 1 y 3 campos"); 
         ?>
 
         <!-- Teléfono - Tel -->
         <p>
             <label for="idTelefono">Teléfono:</label>
-            <input type="tel" name="telefono" id="idTelefono" size="40" placeholder="Teléfono" value="
-            
-            <?php
+            <input type="tel" name="telefono" id="idTelefono" size="40" placeholder="Teléfono" value="<?php
 
                 // Si no está vacío, se guarda el texto introducido
-                validaSiVacio($_REQUEST['telefono']);
+                validaSiVacio('telefono');
                
             ?>">
 
@@ -209,12 +205,10 @@
          <!-- E-mail  -->
          <p>
             <label for="idEmail">E-mail:</label>
-            <input type="email" name="email" id="idEmail" size="40" placeholder="E-mail" value="
-            
-            <?php
+            <input type="email" name="email" id="idEmail" size="40" placeholder="E-mail" value="<?php
 
                 // Si no está vacío, se guarda el texto introducido
-                validaSiVacio($_REQUEST['email']);
+                validaSiVacio('email');
                
             ?>">
         </p>
@@ -222,12 +216,10 @@
         <!-- Contraseña - Input de Password -->
         <p>
             <label for="idPass">Contraseña:</label>
-            <input type="password" name="pass" id="idPass" placeholder="Contraseña" value="
-            
-            <?php
+            <input type="password" name="pass" id="idPass" placeholder="Contraseña" value="<?php
 
                 // Si no está vacío, se guarda el texto introducido
-                validaSiVacio($_REQUEST['pass']);
+                validaSiVacio('pass');
                
             ?>">
         </p>
