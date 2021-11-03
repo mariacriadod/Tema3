@@ -34,7 +34,11 @@
         // Si se ha rellenado correctamente...
         if(validaFormulario())
         {
-            echo "EL FORMULARIO SE HA ENVIADO CORRECTAMENTE";
+
+            echo "<h2>EL FORMULARIO SE HA ENVIADO CORRECTAMENTE</h2><br>";
+
+            // Se muestran los datos del formulario
+            muestraDatosFormulario();
 
             /*
 
@@ -47,8 +51,9 @@
         // Si no...
         else
         {
-            echo "<b>ERROR AL ENVIAR EL FORMULARIO</b>";
-        }
+            echo "<h2>ERROR AL ENVIAR EL FORMULARIO</h2>";
+
+        // Quito el } para que desaparezca el formulario
 
     ?>
 
@@ -79,7 +84,13 @@
         <!-- Nombre Opcional -  Alfabetico Opcional -->
         <p>
             <label for="idNombreOpcional">Nombre (opcional):</label>
-            <input type="text" name="nombreOpcional" id="idNombreOpcional" size="40" placeholder="Nombre">
+            <input type="text" name="nombreOpcional" id="idNombreOpcional" size="40" placeholder="Nombre" value="<?php
+
+            // Si no está vacío, se guarda el texto introducido
+            validaSiVacio('nombreOpcional');
+
+            ?>">
+
         </p>
 
         <!-- Apellido - Alfanumérico -->
@@ -103,7 +114,12 @@
         <!-- Apellido Opcional - Alfanumérico Opcional -->
         <p>
             <label for="idApellidoOpcional">Apellido (opcional):</label>
-            <input type="text" name="apellidoOpcional" id="idApellidoOpcional" size="40" placeholder="Apellido">
+            <input type="text" name="apellidoOpcional" id="idApellidoOpcional" size="40" placeholder="Apellido" value="<?php
+
+            // Si no está vacío, se guarda el texto introducido
+            validaSiVacio('apellidoOpcional');
+
+            ?>">
         </p>
 
         <!-- Fecha -->
@@ -127,7 +143,13 @@
         <!-- Fecha Opcional -->
         <p>
             <label for="idFechaOpcional">Fecha (opcional):</label>
-            <input type="date" name="fechaOpcional" id="idFechaOpcional" size="40">
+            <input type="date" name="fechaOpcional" id="idFechaOpcional" size="40" value="<?php
+
+            // Si no está vacío, se guarda el texto introducido
+            validaSiVacio('fechaOpcional');
+
+            ?>">
+
         </p>
 
         <!-- Radio Button Obligatorio -->
@@ -224,14 +246,14 @@
             ?>">
         </p>
 
-        <!-- Selector de archivos 
+        <!-- Selector de archivos  -->
         <p>
             <label for="idArchivoLabel">Subir documento:</label>
             <input type="file" name="archivo" id="idArchivo">
         </p>
-        -->
+        
 
-        <?php //guardaArchivo("idArchivoLabel"); ?>
+        <?php guardaArchivo("idArchivoLabel"); ?>
 
         <br><br>
 
@@ -243,6 +265,9 @@
         <input type="reset" value="Limpiar">
     </form>
 
+    <?php
+        }
+    ?>
     <br><br><br>
 
     <!-- Footer informativo -->

@@ -3,9 +3,11 @@
 // Funcion que invoca al resto de funciones que van validando el formulario
 function validaFormulario()
 {
+    /*
     echo "<pre>";
     print_r($_REQUEST);
     echo "</pre>";
+    */
 
     if (isset($_REQUEST['Enviado'])) {
         $correcto = true;
@@ -68,7 +70,7 @@ function validaSiVacio($campo)
         // Si no está vacío
         if (!empty($_REQUEST[$campo])) {
             // Muestro el valor del campo en el input
-            echo $campo;
+            echo $_REQUEST[$campo];
 
             $correcto = true;
         } else {
@@ -182,29 +184,73 @@ function guardaValorCheck($check, $valor, $posicion)
 // Funcion que guarda el archivo
 function guardaArchivo($idCampo)
 {
-    if (isset($_FILES)) {
-        // Se le dice donde se quiere que se guarde
-        $rutaGuardado = "../uploads/";
+    if(isset($_REQUEST['Enviado']))
+    {
 
-        // Se le establece el nombre al archivo a guardar
-        $rutaConNombreFichero = $rutaGuardado .  $_FILES['archivo']['name'];
+        if ((isset($_FILES))) 
+        {
+            // Se le dice donde se quiere que se guarde
+            $rutaGuardado = "../uploads/";
 
-        // Si se mueve el fichero del sitio temporal a la ruta especificada...
-        if (move_uploaded_file($_FILES['archivo']['tmp_name'], $rutaConNombreFichero)) {
-            echo "<br>El fichero se ha guardado correctamente.<br>";
+            // Se le establece el nombre al archivo a guardar
+            $rutaConNombreFichero = $rutaGuardado .  $_FILES['archivo']['name'];
 
-            // Si subo una imagen, la guardo y la cargo en el html //
-            echo "La ruta es: <b>" . $rutaConNombreFichero . "</b><br>";
+            // Si se mueve el fichero del sitio temporal a la ruta especificada...
+            if (move_uploaded_file($_FILES['archivo']['tmp_name'], $rutaConNombreFichero)) {
+                echo "<br>El fichero se ha guardado correctamente.<br>";
 
-            echo "<img src='" . $rutaConNombreFichero . "' alt='Imagen' width='100px' height='100px'>";
-            //<img src="pic_trulli.jpg" alt="Italian Trulli">
+                // Si subo una imagen, la guardo y la cargo en el html //
+                echo "La ruta es: <b>" . $rutaConNombreFichero . "</b><br>";
 
-        } else {
-            //echo "<br>Error al guardar el fichero.";
-            ?> <label for="<?php echo $idCampo ?>" style="color:red;">Error al guardar el archivo</label> <?php
+                echo "<img src='" . $rutaConNombreFichero . "' alt='Imagen' width='100px' height='100px'>";
+                //<img src="pic_trulli.jpg" alt="Italian Trulli">
 
+            } 
+            else
+            {
+                //echo "<br>Error al guardar el fichero.";
+                ?> <label for="<?php echo $idCampo ?>" style="color:red;">Error al guardar el archivo</label> <?php
+
+            }
         }
     }
+    
+}
+
+// Funcion que muestra el archivo seleccionado
+function muestraArchivo()
+{
+    if(isset($_REQUEST['Enviado']))
+    {
+
+        if ((isset($_FILES))) 
+        {
+            // Se le dice donde se quiere que se guarde
+            $rutaGuardado = "../uploads/";
+
+            // Se le establece el nombre al archivo a guardar
+            $rutaConNombreFichero = $rutaGuardado .  $_FILES['archivo']['name'];
+
+            // Si se mueve el fichero del sitio temporal a la ruta especificada...
+            if (move_uploaded_file($_FILES['archivo']['tmp_name'], $rutaConNombreFichero)) {
+                echo "<br>El fichero se ha guardado correctamente.<br>";
+
+                // Si subo una imagen, la guardo y la cargo en el html //
+                echo "El archivo es (ruta): <b>" . $rutaConNombreFichero . "</b><br>";
+
+                // Si es una imagen, lo imprimo
+                echo "<img src='" . $rutaConNombreFichero . "' alt='Imagen' width='100px' height='100px'>";
+                //<img src="pic_trulli.jpg" alt="Italian Trulli">
+
+            } 
+            else
+            {
+                //echo "<br>Error al guardar el fichero.";
+
+            }
+        }
+    }
+    
 }
 
 // Función que muestra los datos del formulario
@@ -262,6 +308,9 @@ function muestraDatosFormulario()
     // Pass
     if (!empty($_REQUEST['pass']))
         echo "La contraseña es: <b>" . $_REQUEST["pass"] . "</b><br>";
+
+    // Archivo
+    muestraArchivo();
 }
 
 ?>
