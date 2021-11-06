@@ -11,7 +11,7 @@
 </head>
 <body>
 
-    <h1>Arrays Básicos</h1>
+    <h1>Expresiones Regulares</h1>
 
     <!-- Enlace que accede a otra pagina php que muestra/imprime el codigo de la misma -->
     <!-- Incluir en todos los .php -->
@@ -26,6 +26,8 @@
     <?php
 
         // 0 = false, 1 = true
+
+        echo "<h1>0 = false, 1 = true</h1>";
 
         // Contiene una Palabra //
         echo '<h2>Contiene la palabra <i>\'Holo\'</i></h2>';
@@ -137,37 +139,122 @@
         // | or Me vale noviembre en ingles y en español //
         echo '<h2>| or Me vale noviembre en ingles y en español</h2>';
 
-        $patron='/Nov(iembre|ember)?/';
-        echo preg_match($patron, "Nov");
-        echo preg_match($patron, "Noviembre");
-        echo preg_match($patron, "November");
+        $patron = '/Nov(iembre|ember)?/';
+        $cadena = "Nov";
 
-        echo "<br>$ es el final del string<br>";
-        $patron='/21$/';
-        echo preg_match($patron, "10/12/2021");
-        echo preg_match($patron, "21/12/2020");
+        echo "<b>Patrón:</b>" . " " . $patron . "<br>";
+        echo "<b>Cadena:</b>" . " " . $cadena . "<br>";
 
-        echo "<br>^ Es el principio del string Ej nº de Cuenta<br>";
-        $patron='/^ES/';
-        echo preg_match($patron, "56487 4 984 84 684");
-        echo preg_match($patron, "ES535 2353 486 ");
+        //
+        echo preg_match($patron, $cadena), "<br><br>";
 
-        echo "<br>^ Sirve para decir que no contenga <br>";
+        //
+        $cadena = "Noviembre";
+        echo "<b>Cadena:</b>" . " " . $cadena . "<br>";
+
+        echo preg_match($patron, $cadena), "<br><br>";
+
+        //
+        $cadena = "November";
+        echo "<b>Cadena:</b>" . " " . $cadena . "<br>";
+
+        echo preg_match($patron, $cadena), "<br><br>";
+
+        // Final del String //
+        echo "<h2>$ es el final del string</h2>";
+
+        $patron = '/21$/';
+
+        $cadena = "10/12/2021";
+
+        echo "<b>Patrón:</b>" . " " . $patron . "<br>";
+        echo "<b>Cadena:</b>" . " " . $cadena . "<br>";
+
+        //
+        echo preg_match($patron, $cadena), "<br><br>";
+
+        //
+        $cadena = "21/12/2020";
+        echo "<b>Cadena:</b>" . " " . $cadena . "<br>";
+
+        echo preg_match($patron, $cadena), "<br><br>";
+
+        // Principio del String //
+        echo "<h2>^ es el principio del string</h2>";
+
+        $patron = '/^ES/';
+
+        $cadena = "56487 4 984 84 684";
+
+        echo "<b>Patrón:</b>" . " " . $patron . "<br>";
+        echo "<b>Cadena:</b>" . " " . $cadena . "<br>";
+
+        echo preg_match($patron, $cadena), "<br><br>";
+
+        //
+        $cadena = "ES535 2353 486 ";
+        echo "<b>Cadena:</b>" . " " . $cadena . "<br>";
+
+        echo preg_match($patron, $cadena), "<br><br>";
+
+        // ^ Para que no contenga //
+        echo "<h2>^ Sirve para decir que no contenga </h2>";
         
-        $patron='/log[^AS]/';
-        echo preg_match($patron, "log");
-        echo preg_match($patron, "loga");
-        echo preg_match($patron, "logA");
+        $patron = '/log[^AS]/';
+        $cadena = "log";
 
-        echo "<br>Etiqueta de cierre de html <br>";
+        echo "<b>Patrón:</b>" . " " . $patron . "<br>";
+        echo "<b>Cadena:</b>" . " " . $cadena . "<br>";
+
+        echo preg_match($patron, $cadena), "<br><br>";
+
+
+        //
+        $cadena = "loga";
+        echo "<b>Cadena:</b>" . " " . $cadena . "<br>";
+
+        echo preg_match($patron, $cadena), "<br><br>";
+
+        //
+        $cadena = "logA";
+        echo "<b>Cadena:</b>" . " " . $cadena . "<br>";
+
+        echo preg_match($patron, $cadena), "<br><br>";
+
+        //
+        $cadena = "logAS";
+        echo "<b>Cadena:</b>" . " " . $cadena . "<br>";
+
+        echo preg_match($patron, $cadena), "<br><br>";
+
+        //
+        $cadena = "logS";
+        echo "<b>Cadena:</b>" . " " . $cadena . "<br>";
+
+        echo preg_match($patron, $cadena), "<br><br>";
+
+        //
+        $cadena = "logZ";
+        echo "<b>Cadena:</b>" . " " . $cadena . "<br>";
+
+        echo preg_match($patron, $cadena), "<br><br>";
+
+        // Etiqueta de cierre de html //
+        echo "<h2>Etiqueta de cierre de html</h2>";
+
         //+ puede coincidir una o mas veces
         //No esta funcionando en este momento
-        $patron='/<\/([a-z]+[0-9]?)>/';
+        $patron = '/<\/([a-z]+[0-9]?)>/';
+        $cadena = "<b>Tambien sirve para decir que no contenga</b>
+        <p>Tambien sirve para decir que no contenga</p>
+        <i>Tambien sirve para decir que no contenga</i>";
+
+        echo "<b>Patrón:</b>" . " " . $patron . "<br>";
+        echo "<b>Cadena:</b>" . " " . $cadena . "<br>";
+
         //Puede tener mas de una letra pero al menos una
         //$patron='/<\/(.)+>/';
-        echo preg_match($patron, "<h1>Tambien sirve para decir que no contenga</h1>
-        <p>Tambien sirve para decir que no contenga</p>
-        <i>Tambien sirve para decir que no contenga</i>");
+        echo preg_match($patron, $cadena), "<br><br>";
         
         preg_match_all($patron, "<span>Tambien sirve para decir que no contenga</span>
         <p>Tambien sirve para decir que no contenga</p>
@@ -177,46 +264,159 @@
             print_r($array);
         echo"</pre>"; 
         
-        //Comprobar que el IBAN es valido va a entrar en el examen
-        echo "<br>^ Numero de cuenta valido<br>";
-        $patron='/^ES[0-9]{2}\s[0-9]{4}\s[0-9]{4}\s[0-9]{2}\s[0-9]{10}/';
-        echo preg_match($patron, "ES12 1234 1234 12 1234567890");
-        echo preg_match($patron, "ES535 2353 486 ");
+        // Comprobar que el IBAN es valido va a entrar en el examen
+        echo "<h2>Numero de cuenta valido</h2>";
 
-        echo "<br>Numeros validos del 0 al 999<br>";
+        $patron = '/^ES[0-9]{2}\s[0-9]{4}\s[0-9]{4}\s[0-9]{2}\s[0-9]{10}/';
+        $cadena = "ES12 1234 1234 12 1234567890";
+
+        echo "<b>Patrón:</b>" . " " . $patron . "<br>";
+        echo "<b>Cadena:</b>" . " " . $cadena . "<br>";
+
+        echo preg_match($patron, $cadena), "<br><br>";
+
+        //
+        $cadena = "ES535 2353 486 ";
+        echo "<b>Cadena:</b>" . " " . $cadena . "<br>";
+
+        echo preg_match($patron, $cadena), "<br><br>";
+
+        // Numeros válidos del 0 al 999 //
+        echo "<h2>Numeros validos del 0 al 999</h2>";
+
         //^ Que obligatoriamente empiece por ese caracter y el $ que obligatoriamente termine por ese caracter
-        $patron='/^[0-9]{1,3}$/';
-        echo preg_match($patron, "");
-        echo preg_match($patron, "9999");
-        echo preg_match($patron, "99");
+        $patron = '/^[0-9]{1,3}$/';
+
+        $cadena = "";
+
+        echo "<b>Patrón:</b>" . " " . $patron . "<br>";
+        echo "<b>Cadena:</b>" . " " . $cadena . "<br>";
+
+        echo preg_match($patron, $cadena), "<br><br>";
+
+        //
+        $cadena = "9999";
+        echo "<b>Cadena:</b>" . " " . $cadena . "<br>";
+
+        echo preg_match($patron, $cadena), "<br><br>";
+
+        //
+        $cadena = "999";
+        echo "<b>Cadena:</b>" . " " . $cadena . "<br>";
+
+        echo preg_match($patron, $cadena), "<br><br>";
 
         //\d Cualquier numero \D cualquier letra
-        $patron='/dD/';
+        $patron = '/dD/';
 
-        echo "<br>Minimo 3 caracteres en el nombre<br>";
+        // Mínimo Un carácter en mayúsculas y dos en minúsculas //
+        echo "<h2>Mínimo Un carácter en mayúsculas y dos en minúsculas</h2>";
+
         $patron='/^[A-Z]{1}[a-z]{2}/i';
-        echo preg_match($patron, "david");
 
-        echo "<br>Minimo 3 caracteres en el primer apellido y minimo 3 caracteres en el segundo<br>";
-        $patron='/[A-Z]{3}\s[A-Z]{3}/i';
-        echo preg_match($patron, "Vic Her");
+        $cadena = "david";
+
+        echo "<b>Patrón:</b>" . " " . $patron . "<br>";
+        echo "<b>Cadena:</b>" . " " . $cadena . "<br>";
+
+        echo preg_match($patron, $cadena), "<br><br>";
+
+        //
+        $cadena = "Dav";
+        echo "<b>Cadena:</b>" . " " . $cadena . "<br>";
+
+        echo preg_match($patron, $cadena), "<br><br>";
+
+        //
+        $cadena = "D";
+        echo "<b>Cadena:</b>" . " " . $cadena . "<br>";
+
+        echo preg_match($patron, $cadena), "<br><br>";
+
+        //
+        $cadena = "dav";
+        echo "<b>Cadena:</b>" . " " . $cadena . "<br>";
+
+        echo preg_match($patron, $cadena), "<br><br>";
+
+         //
+         $cadena = "dAV";
+         echo "<b>Cadena:</b>" . " " . $cadena . "<br>";
+ 
+         echo preg_match($patron, $cadena), "<br><br>";
+
+        //
+        $cadena = "dava";
+        echo "<b>Cadena:</b>" . " " . $cadena . "<br>";
+
+        echo preg_match($patron, $cadena), "<br><br>";
+
+        // Minimo 3 caracteres en el primer apellido y minimo 3 caracteres en el segundo //
+        echo "<h2>Minimo 3 caracteres en el primer apellido y minimo 3 caracteres en el segundo</h2>";
+
+        $patron = '/[A-Z]{3}\s[A-Z]{3}/i';
+
+        $cadena = "Vic Her";
+
+        echo "<b>Patrón:</b>" . " " . $patron . "<br>";
+        echo "<b>Cadena:</b>" . " " . $cadena . "<br>";
+
+        echo preg_match($patron, $cadena), "<br><br>";
+
+        //
+        $cadena = "vic her";
+        echo "<b>Cadena:</b>" . " " . $cadena . "<br>";
+
+        echo preg_match($patron, $cadena), "<br><br>";
         
-        //dos digitos guion o barra dos digitos guion o barra cuatro digitos Y mayor de edad
-        echo "<br>Probar la fecha<br>"; //[0-9]{2}(-|\/)[0-9]{4}
-        $patron='/[0-9]{2}(-|\/)[0-9]{2}(-|\/)[0-9]{4}/';
-        echo preg_match($patron, "12-1-2021");
+        // dos digitos guion o barra dos digitos guion o barra cuatro digitos Y mayor de edad
+        // FECHA //
+        echo "<h2>Fecha</h2>"; //[0-9]{2}(-|\/)[0-9]{4}
 
+        $patron = '/[0-9]{2}(-|\/)[0-9]{2}(-|\/)[0-9]{4}/';
 
-        echo "<br>Comprobar DNI con 8 dígitos y una letra<br>";
-        $patron='/^[0-9]{8}[A-Z]{1}$/';
-        echo preg_match($patron, "12345678B");
+        $cadena = "12-1-2021";
 
-        echo "<br>Comprobar correo <br>";
-        $patron='/[a-z]+@[a-z]+\.[a-z]{2,}/';
-        echo preg_match($patron, "da@g.co");
+        echo "<b>Patrón:</b>" . " " . $patron . "<br>";
+        echo "<b>Cadena:</b>" . " " . $cadena . "<br>";
 
-        //\.{2,}
+        echo preg_match($patron, $cadena), "<br><br>";
 
+        //
+        $cadena = "1/2/2021";
+        echo "<b>Cadena:</b>" . " " . $cadena . "<br>";
+
+        echo preg_match($patron, $cadena), "<br><br>";
+
+        //
+        $cadena = "01/02/2021";
+        echo "<b>Cadena:</b>" . " " . $cadena . "<br>";
+
+        echo preg_match($patron, $cadena), "<br><br>";
+
+        // DNI //
+        echo "<h2>DNI</h2>";
+
+        $patron = '/^[0-9]{8}[A-Z]{1}$/';
+
+        $cadena = "12345678B";
+
+        echo "<b>Patrón:</b>" . " " . $patron . "<br>";
+        echo "<b>Cadena:</b>" . " " . $cadena . "<br>";
+
+        echo preg_match($patron, $cadena), "<br><br>";
+
+        // Correo electrónico //
+        echo "<h2>Comprobar correo </h2>";
+
+        $patron = '/[a-z]+@[a-z]+\.[a-z]{2,}/';
+
+        $cadena = "da@g.co";
+
+        echo "<b>Patrón:</b>" . " " . $patron . "<br>";
+        echo "<b>Cadena:</b>" . " " . $cadena . "<br>";
+
+        echo preg_match($patron, $cadena), "<br><br>";
         
     ?>
         
