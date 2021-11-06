@@ -196,13 +196,14 @@ function guardaArchivo($idCampo)
             $rutaConNombreFichero = $rutaGuardado .  $_FILES['archivo']['name'];
 
             // Si se mueve el fichero del sitio temporal a la ruta especificada...
-            if (move_uploaded_file($_FILES['archivo']['tmp_name'], $rutaConNombreFichero)) {
-                echo "<br>El fichero se ha guardado correctamente.<br>";
+            if (move_uploaded_file($_FILES['archivo']['tmp_name'], $rutaConNombreFichero)) 
+            {
+                echo "<br>El archivo se ha guardado correctamente.<br>";
 
                 // Si subo una imagen, la guardo y la cargo en el html //
-                echo "La ruta es: <b>" . $rutaConNombreFichero . "</b><br>";
+                //echo "La ruta es: <b>" . $rutaConNombreFichero . "</b><br>";
 
-                echo "<img src='" . $rutaConNombreFichero . "' alt='Imagen' width='100px' height='100px'>";
+                //echo "<img src='" . $rutaConNombreFichero . "' alt='Imagen' width='100px' height='100px'>";
                 //<img src="pic_trulli.jpg" alt="Italian Trulli">
 
             } 
@@ -212,6 +213,10 @@ function guardaArchivo($idCampo)
                 ?> <label for="<?php echo $idCampo ?>" style="color:red;">Error al guardar el archivo</label> <?php
 
             }
+        }
+        else
+        {
+            echo "<br>No existe FILES";
         }
     }
     
@@ -233,7 +238,7 @@ function muestraArchivo()
 
             // Si se mueve el fichero del sitio temporal a la ruta especificada...
             if (move_uploaded_file($_FILES['archivo']['tmp_name'], $rutaConNombreFichero)) {
-                echo "<br>El fichero se ha guardado correctamente.<br>";
+                //echo "<br>El fichero se ha guardado correctamente.<br>";
 
                 // Si subo una imagen, la guardo y la cargo en el html //
                 echo "El archivo es (ruta): <b>" . $rutaConNombreFichero . "</b><br>";
