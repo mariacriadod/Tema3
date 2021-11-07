@@ -309,12 +309,12 @@
         //\d Cualquier numero \D cualquier letra
         $patron = '/dD/';
 
-        // Mínimo Un carácter en mayúsculas y dos en minúsculas //
-        echo "<h2>Mínimo Un carácter en mayúsculas y dos en minúsculas</h2>";
+        // No puede estar vacío y mínimo 3 carácteres //
+        echo "<h2>No puede estar vacío y mínimo 3 carácteres (Primera letra en mayus)</h2>";
 
-        $patron='/^[A-Z]{1}[a-z]{2}/i';
+        $patron='/^[A-Z]{1}[a-z]{2}/';
 
-        $cadena = "david";
+        $cadena = "David";
 
         echo "<b>Patrón:</b>" . " " . $patron . "<br>";
         echo "<b>Cadena:</b>" . " " . $cadena . "<br>";
@@ -351,12 +351,27 @@
 
         echo preg_match($patron, $cadena), "<br><br>";
 
+        //
+        $cadena = "da";
+        echo "<b>Cadena:</b>" . " " . $cadena . "<br>";
+
+        echo preg_match($patron, $cadena), "<br><br>";
+
+        //
+        $cadena = "";
+        echo "<b>Cadena:</b>" . " " . $cadena . "<br>";
+
+        echo preg_match($patron, $cadena), "<br><br>";
+
         // Minimo 3 caracteres en el primer apellido y minimo 3 caracteres en el segundo //
         echo "<h2>Minimo 3 caracteres en el primer apellido y minimo 3 caracteres en el segundo</h2>";
 
-        $patron = '/[A-Z]{3}\s[A-Z]{3}/i';
+        //$patron = '/[A-Z]{3}\s[A-Z]{3}/i';
 
-        $cadena = "Vic Her";
+        $patron = '/^[A-Z]{1}[a-z]{2,}\s[A-Z]{1}[a-z]{2,}/';
+
+
+        $cadena = "Vice ee";
 
         echo "<b>Patrón:</b>" . " " . $patron . "<br>";
         echo "<b>Cadena:</b>" . " " . $cadena . "<br>";
@@ -373,14 +388,60 @@
         // FECHA //
         echo "<h2>Fecha</h2>"; //[0-9]{2}(-|\/)[0-9]{4}
 
-        $patron = '/[0-9]{2}(-|\/)[0-9]{2}(-|\/)[0-9]{4}/';
+        //$patron = '/[1-31]{1}(-|\/)[0-9]{2}(-|\/)[0-9]{4}/';
 
-        $cadena = "12-1-2021";
+        // Formato dia mes año tanto con guiones como con barras
+        $patron = '/^(?:3[01]|[12][0-9]|0?[1-9])([\-\/.])(0?[1-9]|1[1-2])\1\d{4}$/';
+
+        $cadena = "2021/01/23";
 
         echo "<b>Patrón:</b>" . " " . $patron . "<br>";
         echo "<b>Cadena:</b>" . " " . $cadena . "<br>";
 
+        
         echo preg_match($patron, $cadena), "<br><br>";
+        //
+        $arrayFecha = getdate();
+        $diaActual = $arrayFecha['mday'];
+        $mesActual = $arrayFecha['mon'];
+        $añoActual = $arrayFecha['year'];
+
+        //$hoy = date('d-m-y',getdate());
+        //$cadenaActual = $diaActual + "-" + $mesActual + "-" + $añoActual;
+
+      //  echo "Cadena actual: " . $cadenaActual;
+        $hoy = date('d-m-y');
+
+        //$fechaActual = new DateTime($hoy);
+//        $fechaIntroducida = new DateTime($cadena);
+
+        $actual = "07/11/2021";
+        $introducida = "08/11/2021";
+
+        // DateTime (y-m-d)
+        $fechaActual = new DateTime('07/11/2021');
+        $fechaIntroducida = new DateTime('08/11/2021');
+
+        $cadena = strtotime($cadena);
+
+        echo "La fecha actual es: " . date('d-m-y');
+        echo "La fecha introducida es: " . date('d-m-y',$cadena);
+
+        $difDias = ($fechaActual->diff($fechaIntroducida))->format('%R%a days');
+
+        echo "La diferencia de dias es de: " . $difDias;
+
+        // 6570 dias == 18 años (365 * 18)
+        if($difDias >= 6570)
+        {
+            echo "Es mayor de edad.";
+        }
+        else
+        {
+            echo "No es mayor de edad.";
+        }
+
+        //echo "La fecha es: " . $fecha . "<br>";
 
         //
         $cadena = "1/2/2021";

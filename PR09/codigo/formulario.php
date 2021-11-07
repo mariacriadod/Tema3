@@ -78,6 +78,8 @@
                     // En caso de que esté vacío, se muestra un error
                     imprimeError("idNombre",'nombre',"Debe introducir un nombre");
 
+                    // Valida el nombre mediante un patrón
+                    validaNombre("idNombre","Debe introducir un nombre válido");
                 ?>
 
         </p>
@@ -97,13 +99,16 @@
                 // En caso de que esté vacío, se muestra un error
                 imprimeError("idApellido",'apellido',"Debe introducir un apellido");
 
+                // Valida el apellido mediante un patrón
+                validaApellido("idApellido","Debe introducir unos apellidos válido");
+
             ?>
         </p>
 
-        <!-- Fecha -->
+        <!-- Fecha - Alfanumérico -->
         <p>
             <label for="idFecha">Fecha:</label>
-            <input type="date" name="fecha" id="idfecha" size="40" value="<?php
+            <input type="text" name="fecha" id="idFecha" size="10" placeholder="Fecha" value="<?php
 
                 // Si no está vacío, se guarda el texto introducido
                 validaSiVacio('fecha');
@@ -118,15 +123,45 @@
             ?>
         </p>
 
-         <!-- E-mail  -->
-         <p>
+        <!-- DNI (bien formado y letra correcta) -->
+        <p>
+            <label for="idDni">DNI:</label>
+            <input type="text" name="dni" id="idDni" size="9" placeholder="DNI" value="<?php
+
+                // Si no está vacío, se guarda el texto introducido
+                validaSiVacio('dni');
+                
+            ?>">
+
+            <?php
+
+                // En caso de que esté vacío, se muestra un error
+                imprimeError("idDni",'dni',"Debe introducir un dni");
+
+                // Valida el dni mediante un patrón
+                validaDNI("idDni","Debe introducir un dni válido");
+            ?>
+        </p>
+
+
+        <!-- E-mail  -->
+        <p>
             <label for="idEmail">E-mail:</label>
             <input type="email" name="email" id="idEmail" size="40" placeholder="E-mail" value="<?php
 
                 // Si no está vacío, se guarda el texto introducido
                 validaSiVacio('email');
-               
+                
             ?>">
+
+            <?php
+
+            // En caso de que esté vacío, se muestra un error
+            imprimeError("idEmail",'email',"Debe introducir un email");
+
+            // Valida el email mediante un patrón
+            validaEmail("idEmail","Debe introducir un email válido");
+            ?>
         </p>
 
         <br><br>
@@ -142,6 +177,7 @@
     <?php
         }
     ?>
+
     <br><br><br>
 
     <!-- Footer informativo -->
