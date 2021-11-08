@@ -208,7 +208,6 @@
 
         echo preg_match($patron, $cadena), "<br><br>";
 
-
         //
         $cadena = "loga";
         echo "<b>Cadena:</b>" . " " . $cadena . "<br>";
@@ -243,9 +242,9 @@
         echo "<h2>Etiqueta de cierre de html</h2>";
 
         //+ puede coincidir una o mas veces
-        //No esta funcionando en este momento
-        $patron = '/<\/([a-z]+[0-9]?)>/';
-        $cadena = "<b>Tambien sirve para decir que no contenga</b>
+        $patron = '/<\/[a-z]+[0-9]?>/i';
+
+        $cadena = "<h1>Tambien sirve para decir que no contenga</h1>
         <p>Tambien sirve para decir que no contenga</p>
         <i>Tambien sirve para decir que no contenga</i>";
 
@@ -261,7 +260,13 @@
         <i>Tambien sirve para decir que no contenga</i>", $array);
 
         echo "<pre>";
-            print_r($array);
+
+            foreach ($array as $value) 
+            {
+                $value = str_replace("<","&lt",$value);
+                print_r(str_replace(">","&gt",$value));
+            }
+            //print_r($array);
         echo"</pre>"; 
         
         // Comprobar que el IBAN es valido va a entrar en el examen
