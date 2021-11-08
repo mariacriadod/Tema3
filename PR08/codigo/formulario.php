@@ -59,7 +59,8 @@
 
     <!-- Formulario por POST -->
     <!-- Le indico en el actio que me redirija a este mismo fichero para validarlo -->
-    <form action="<?php echo $_SERVER['PHP_SELF'];?>" method="post" name="formulario" id="idFormulario">
+    <!-- enctype="multipart/form-data" para permitir que se puedan cargar archivos -->
+    <form action="<?php echo $_SERVER['PHP_SELF'];?>" method="post" name="formulario" id="idFormulario"  enctype="multipart/form-data">
 
         <!-- Nombre - Alfabetico -->
         <p>
@@ -246,12 +247,13 @@
             ?>">
         </p>
 
-        <!-- Selector de archivos  -->
+       <!-- Selector de archivos -->
+        <p><b>Selector de Archivos</b></p>
+
         <p>
-            <label for="idArchivoLabel">Subir documento:</label>
+            <label for="idArchivo">Subir documento:</label>
             <input type="file" name="archivo" id="idArchivo">
         </p>
-        
 
         <?php guardaArchivo("idArchivoLabel"); ?>
 
