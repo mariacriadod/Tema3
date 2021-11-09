@@ -92,6 +92,10 @@ function muestraDatosFormulario()
     if (!empty($_REQUEST['fecha']))
         echo "La fecha es: <b>" . $_REQUEST["fecha"] . "</b><br>";
 
+    // Fecha
+    if (!empty($_REQUEST['fecha']))
+        echo "La fecha es: <b>" . $_REQUEST["fecha"] . "</b><br>";
+
     // Email
     if (!empty($_REQUEST['email']))
         echo "El email es: <b>" . $_REQUEST["email"] . "</b><br>";
