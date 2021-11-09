@@ -24,6 +24,13 @@
         <img src="../img/icono_ver_codigo.png" alt="suu" width="35px" height="35px"></img>
     </a>
 
-    <!
+    <!-- PHP -->
+    <?php
+
+        
+    ?>
+
+    <footer>&copy Ismael Maestre</footer>
+
 </body>
 </html>
