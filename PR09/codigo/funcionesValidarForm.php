@@ -9,34 +9,49 @@ function validaFormulario()
     echo "</pre>";
     */
 
-    if (isset($_REQUEST['Enviado'])) 
+    // Si se ha enviado el formulario
+    if (validaEnviado() == true) 
     {
         $correcto = true;
 
-        /*
-        // nombre
-        if (empty($_REQUEST['nombre']))
+        // Nombre
+        // Si el campo nombre está vacío o no cumple el patrón...
+        if (empty($_REQUEST['nombre'])||(validaNombre(false) == false))
+        {
             $correcto = false;
+        }
 
-        // Apellido
-        if (empty($_REQUEST['apellido']))
+        // Apellidos
+        // Si el campo apellido está vacío o no cumple el patrón...
+        if (empty($_REQUEST['apellido'])||(validaApellido(false) == false))
+        {
             $correcto = false;
+        }
 
         // Fecha
-        if (empty($_REQUEST['fecha']))
+        // Si el campo fecha está vacío o no cumple el patrón...
+        if (empty($_REQUEST['fecha'])||(validaFecha(false) == false))
+        {
             $correcto = false;
+        }
 
         // DNI
-        if (empty($_REQUEST['dni']))
+        // Si el campo dni está vacío o no cumple el patrón...
+        if (empty($_REQUEST['dni'])||(validaDNI(false) == false))
+        {
             $correcto = false;
+        }
 
-        // DNI
-        if (empty($_REQUEST['email']))
+        // Email
+        // Si el campo email está vacío o no cumple el patrón...
+        if (empty($_REQUEST['email'])||(validaEmail(false) == false))
+        {
             $correcto = false;
-        */
+        }
         
         
-    } else {
+    } else 
+    {
         $correcto = false;
     }
 
@@ -44,13 +59,16 @@ function validaFormulario()
 }
 
 // Función que valida que se ha enviado el formulario
-function validaEnviado($enviado)
+function validaEnviado()
 {
-    $enviado = $_REQUEST['Enviado'];
+    //$enviado = $_REQUEST['Enviado'];
 
-    if (isset($enviado)) {
+    if (isset($_REQUEST['Enviado']))
+    {
         $correcto = true;
-    } else {
+    }
+    else
+    {
         $correcto = false;
     }
 
@@ -103,11 +121,7 @@ function muestraDatosFormulario()
     if (!empty($_REQUEST['fecha']))
         echo "La fecha es: <b>" . $_REQUEST["fecha"] . "</b><br>";
 
-    // Fecha
-    if (!empty($_REQUEST['fecha']))
-        echo "La fecha es: <b>" . $_REQUEST["fecha"] . "</b><br>";
-
-    // Email
+    // Dni
     if (!empty($_REQUEST['dni']))
         echo "El dni es: <b>" . $_REQUEST["dni"] . "</b><br>";
 
@@ -118,13 +132,15 @@ function muestraDatosFormulario()
 }
 
 // Funcion que valida el nombre con un patrón
-function validaNombre($idCampo,$mensaje)
+function validaNombre($validando)
 {
     // No puede estar vacío y mínimo ha de tener 3 carácteres
     // La primera letra en mayúscula
 
     // Patrón
     $patron = '/^[A-Z]{1}[a-z]{2}/';
+
+    $correcto = false;
 
     if(((isset($_REQUEST["nombre"])&& (isset($_REQUEST['Enviado'])&&(!empty($_REQUEST["nombre"])))))) 
     {
@@ -133,30 +149,36 @@ function validaNombre($idCampo,$mensaje)
         // Si cumple el patrón...
         if(preg_match($patron, $nombre) == true)
         {
-            //$correcto = true;
+            $correcto = true;
         }
         // Si no...
         else
         {
-            //$correcto = false;
+            $correcto = false;
 
-            ?>
-            <label for="<?php echo $idCampo ?>" style="color:red;"><?php echo $mensaje ?></label>
-            <?php
+            if($validando)
+            {
+                ?>
+                <label for="<?php echo "idNombre" ?>" style="color:red;"><?php echo "Debe introducir un nombre válido." ?></label>
+                <?php
+            }
+            
         }
     }
 
-    //return $correcto;
+    return $correcto;
 }
 
 // Funcion que valida el nombre con un patrón
-function validaApellido($idCampo,$mensaje)
+function validaApellido($validando)
 {
     // No puede estar vacío y mínimo 3 carácteres en el 1º ape + espacio + mínimo 3 carácteres en el 2º ape
     // La primera letra en mayúscula
 
     // Patrón
     $patron = '/^[A-Z]{1}[a-z]{2,}\s[A-Z]{1}[a-z]{2,}/';
+
+    $correcto = false;
 
     if(((isset($_REQUEST["apellido"])&& (isset($_REQUEST['Enviado'])&&(!empty($_REQUEST["apellido"])))))) 
     {
@@ -165,25 +187,28 @@ function validaApellido($idCampo,$mensaje)
         // Si cumple el patrón...
         if(preg_match($patron, $apellido) == true)
         {
-            //$correcto = true;
+            $correcto = true;
         }
         // Si no...
         else
         {
-            //$correcto = false;
+            $correcto = false;
 
-            ?>
-            <label for="<?php echo $idCampo ?>" style="color:red;"><?php echo $mensaje ?></label>
-            <?php
+            if($validando)
+            {
+                ?>
+                <label for="<?php echo "idApellido" ?>" style="color:red;"><?php echo "Debe introducir un apellido válido" ?></label>
+                <?php
+            }
+            
         }
     }
     
-
-    //return $correcto;
+    return $correcto;
 }
 
 // Funcion que valida el nombre con un patrón
-function validaFecha($idCampo,$mensaje)
+function validaFecha($validando)
 {
     // Valida la fecha tanto en el formato español como en el formato inglés
     // Patrón
@@ -200,12 +225,14 @@ function validaFecha($idCampo,$mensaje)
         {
             $correcto = true;
 
+            // Recojo las fechas en milisegundos para compararlas
             $fechaHace18años = strtotime(date ('d-m-Y', time())."- 18 years");
             $fechaIntroducida = strtotime($_REQUEST['fecha']);
 
-            echo "Fecha Hace 18: " . $fechaHace18años;
-            echo "Fecha introducida: " . $fechaIntroducida;
+            //echo "Fecha Hace 18: " . $fechaHace18años;
+            //echo "Fecha introducida: " . $fechaIntroducida;
 
+            // Compruebo si es mayor de edad
             if($fechaIntroducida >= $fechaHace18años)
             {
                 $correcto = true;
@@ -214,9 +241,13 @@ function validaFecha($idCampo,$mensaje)
             {
                 $correcto = false;
 
-                ?>
-                <label for="<?php echo $idCampo ?>" style="color:red;"><?php echo $mensaje ?></label>
-                <?php
+                if($validando)
+                {
+                    ?>
+                    <label for="<?php echo "idFecha" ?>" style="color:red;"><?php echo "Debe introducir una fecha válida" ?></label>
+                    <?php
+                }
+               
             }
 
        
@@ -226,9 +257,12 @@ function validaFecha($idCampo,$mensaje)
         {
             $correcto = false;
 
-            ?>
-            <label for="<?php echo $idCampo ?>" style="color:red;"><?php echo $mensaje ?></label>
-            <?php
+            if($validando)
+            {
+                ?>
+                <label for="<?php echo "idFecha" ?>" style="color:red;"><?php echo "Debe introducir una fecha válida" ?></label>
+                <?php
+            }
         }
     }
 
@@ -236,9 +270,11 @@ function validaFecha($idCampo,$mensaje)
 }
 
 // Funcion que valida el dni mediante un patrón
-function validaDNI($idCampo,$mensaje)
+function validaDNI($validando)
 {
     $patron = '/^[0-9]{8}[A-Z]{1}$/';
+
+    $correcto = false;
 
     if(((isset($_REQUEST["dni"])&& (isset($_REQUEST['Enviado'])&&(!empty($_REQUEST["dni"])))))) 
     {
@@ -265,36 +301,45 @@ function validaDNI($idCampo,$mensaje)
             // Si la letra es acorde a las letras del dni...
             if($palabro{$resto} == $letra)
             {
-                //$correcto = true;
+                $correcto = true;
             }
             else
             {
-                //$correcto = false;
+                $correcto = false;
 
-                ?>
-                <label for="<?php echo $idCampo ?>" style="color:red;"><?php echo $mensaje ?></label>
-                <?php
+                if($validando)
+                {
+                    ?>
+                    <label for="<?php echo "idDni" ?>" style="color:red;"><?php echo "Debe introducir un DNI válido" ?></label>
+                    <?php
+                }
+                
             }
         }
         // Si no...
         else
         {
-            //$correcto = false;
+            $correcto = false;
 
-            ?>
-            <label for="<?php echo $idCampo ?>" style="color:red;"><?php echo $mensaje ?></label>
-            <?php
+            if($validando)
+            {
+                ?>
+                <label for="<?php echo "idDni" ?>" style="color:red;"><?php echo "Debe introducir un DNI válido" ?></label>
+                <?php
+            }
         }
     }
 
-    //return $correcto;
+    return $correcto;
 
 }
 
 // FUnción que valida el correo electrónico mediante un patrón
-function validaEmail($idCampo,$mensaje)
+function validaEmail($validando)
 {
     $patron = '/[a-z]+@[a-z]+\.[a-z]{2,}/';
+
+    $correcto = false;
 
     if(((isset($_REQUEST["email"])&& (isset($_REQUEST['Enviado'])&&(!empty($_REQUEST["email"])))))) 
     {
@@ -303,20 +348,24 @@ function validaEmail($idCampo,$mensaje)
         // Si cumple el patrón...
         if(preg_match($patron, $email) == true)
         {
-            //$correcto = true;
+            $correcto = true;
         }
         // Si no...
         else
         {
-            //$correcto = false;
+            $correcto = false;
 
-            ?>
-            <label for="<?php echo $idCampo ?>" style="color:red;"><?php echo $mensaje ?></label>
-            <?php
+            if($validando)
+            {
+                ?>
+                <label for="<?php echo "idEmail" ?>" style="color:red;"><?php echo "Debe introducir un email válido" ?></label>
+                <?php
+            }
+            
         }
     }
 
-    //return $correcto;
+    return $correcto;
 
 }
 

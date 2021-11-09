@@ -79,7 +79,7 @@
                     imprimeError("idNombre",'nombre',"Debe introducir un nombre");
 
                     // Valida el nombre mediante un patrón
-                    validaNombre("idNombre","Debe introducir un nombre válido");
+                    validaNombre(true);
                 ?>
 
         </p>
@@ -100,7 +100,7 @@
                 imprimeError("idApellido",'apellido',"Debe introducir un apellido");
 
                 // Valida el apellido mediante un patrón
-                validaApellido("idApellido","Debe introducir unos apellidos válido");
+                validaApellido(true);
 
             ?>
         </p>
@@ -121,7 +121,7 @@
                 imprimeError("idFecha",'fecha',"Debe introducir una fecha");
 
                 // Valida el dni mediante un patrón
-                validaFecha("idFecha","Debe introducir una fecha válida");
+                validaFecha(true);
             ?>
         </p>
 
@@ -141,7 +141,7 @@
                 imprimeError("idDni",'dni',"Debe introducir un dni");
 
                 // Valida el dni mediante un patrón
-                validaDNI("idDni","Debe introducir un dni válido");
+                validaDNI(true);
             ?>
         </p>
 
@@ -162,7 +162,7 @@
             imprimeError("idEmail",'email',"Debe introducir un email");
 
             // Valida el email mediante un patrón
-            validaEmail("idEmail","Debe introducir un email válido");
+            validaEmail(true);
             ?>
         </p>
 
