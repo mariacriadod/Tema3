@@ -120,6 +120,8 @@
                 // En caso de que esté vacío, se muestra un error
                 imprimeError("idFecha",'fecha',"Debe introducir una fecha");
 
+                // Valida el dni mediante un patrón
+                validaFecha("idFecha","Debe introducir una fecha válida");
             ?>
         </p>
 

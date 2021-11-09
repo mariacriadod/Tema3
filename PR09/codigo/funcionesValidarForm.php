@@ -9,9 +9,11 @@ function validaFormulario()
     echo "</pre>";
     */
 
-    if (isset($_REQUEST['Enviado'])) {
+    if (isset($_REQUEST['Enviado'])) 
+    {
         $correcto = true;
 
+        /*
         // nombre
         if (empty($_REQUEST['nombre']))
             $correcto = false;
@@ -24,6 +26,15 @@ function validaFormulario()
         if (empty($_REQUEST['fecha']))
             $correcto = false;
 
+        // DNI
+        if (empty($_REQUEST['dni']))
+            $correcto = false;
+
+        // DNI
+        if (empty($_REQUEST['email']))
+            $correcto = false;
+        */
+        
         
     } else {
         $correcto = false;
@@ -35,7 +46,7 @@ function validaFormulario()
 // Función que valida que se ha enviado el formulario
 function validaEnviado($enviado)
 {
-
+    $enviado = $_REQUEST['Enviado'];
 
     if (isset($enviado)) {
         $correcto = true;
@@ -97,6 +108,10 @@ function muestraDatosFormulario()
         echo "La fecha es: <b>" . $_REQUEST["fecha"] . "</b><br>";
 
     // Email
+    if (!empty($_REQUEST['dni']))
+        echo "El dni es: <b>" . $_REQUEST["dni"] . "</b><br>";
+
+    // Email
     if (!empty($_REQUEST['email']))
         echo "El email es: <b>" . $_REQUEST["email"] . "</b><br>";
 
@@ -110,7 +125,6 @@ function validaNombre($idCampo,$mensaje)
 
     // Patrón
     $patron = '/^[A-Z]{1}[a-z]{2}/';
-
 
     if(((isset($_REQUEST["nombre"])&& (isset($_REQUEST['Enviado'])&&(!empty($_REQUEST["nombre"])))))) 
     {
@@ -169,49 +183,53 @@ function validaApellido($idCampo,$mensaje)
 }
 
 // Funcion que valida el nombre con un patrón
-function validaFecha($fecha)
+function validaFecha($idCampo,$mensaje)
 {
     // Valida la fecha tanto en el formato español como en el formato inglés
-
     // Patrón
     $patron = '/[0-9]{2}(-|\/)[0-9]{2}(-|\/)[0-9]{4}/';
 
-    // Si cumple el patrón...
-    if(preg_match($patron, $fecha) == true)
+    $correcto = false;
+
+    if(((isset($_REQUEST["fecha"])&& (isset($_REQUEST['Enviado'])&&(!empty($_REQUEST["fecha"])))))) 
     {
-        $correcto = true;
+        $fecha = $_REQUEST["fecha"];
 
-        // Paso la fecha de formato texto a formato date
-        $fechaDate = date($fecha);
-
-        // Compruebo si es mayor de edad
-
-        // Fecha actual (en seg)
-        $hoy = date('d-m-y',time());
-
-        $fechaActual = new DateTime($cadena);
-        $fechaIntroducida = new DateTime($fecha);
-
-        $difDias = ($fechaActual->diff($fechaIntroducida))->format('%R%a days');
-
-        echo "La diferencia de dias es de: " . $difDias;
-
-        // 6570 dias == 18 años
-        if($difDias >= 6570)
+        // Si cumple el patrón...
+        if(preg_match($patron,$fecha) == true)
         {
-            echo "Es mayor de edad.";
+            $correcto = true;
+
+            $fechaHace18años = strtotime(date ('d-m-Y', time())."- 18 years");
+            $fechaIntroducida = strtotime($_REQUEST['fecha']);
+
+            echo "Fecha Hace 18: " . $fechaHace18años;
+            echo "Fecha introducida: " . $fechaIntroducida;
+
+            if($fechaIntroducida >= $fechaHace18años)
+            {
+                $correcto = true;
+            }
+            else
+            {
+                $correcto = false;
+
+                ?>
+                <label for="<?php echo $idCampo ?>" style="color:red;"><?php echo $mensaje ?></label>
+                <?php
+            }
+
+       
         }
+        // Si no...
         else
         {
-            echo "No es mayor de edad.";
+            $correcto = false;
+
+            ?>
+            <label for="<?php echo $idCampo ?>" style="color:red;"><?php echo $mensaje ?></label>
+            <?php
         }
-
-
-    }
-    // Si no...
-    else
-    {
-        $correcto = false;
     }
 
     return $correcto;
@@ -239,7 +257,7 @@ function validaDNI($idCampo,$mensaje)
             $numeros = substr($dni, 0, -1);
 
             // Resto
-            $resto = $numeros%23;  
+            $resto = $numeros % 23;  
 
             // Todas las letras del dni
             $palabro = 'TRWAGMYFPDXBNJZSQVHLCKE';  
