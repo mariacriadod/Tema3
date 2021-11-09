@@ -79,7 +79,7 @@ function validaEnviado()
 function validaSiVacio($campo)
 {
 
-    if (isset($_REQUEST['Enviado'])) {
+    if (validaEnviado()) {
         // Si no está vacío
         if (!empty($_REQUEST[$campo])) {
             // Muestro el valor del campo en el input
@@ -115,7 +115,7 @@ function muestraDatosFormulario()
 
     // Apellido
     if (!empty($_REQUEST['apellido']))
-        echo "El apellido es: <b>" . $_REQUEST["apellido"] . "</b><br>";
+        echo "Los apellidos son: <b>" . $_REQUEST["apellido"] . "</b><br>";
 
     // Fecha
     if (!empty($_REQUEST['fecha']))
@@ -197,7 +197,7 @@ function validaApellido($validando)
             if($validando)
             {
                 ?>
-                <label for="<?php echo "idApellido" ?>" style="color:red;"><?php echo "Debe introducir un apellido válido" ?></label>
+                <label for="<?php echo "idApellido" ?>" style="color:red;"><?php echo "Debe introducir unos apellidos válidos" ?></label>
                 <?php
             }
             
@@ -233,7 +233,7 @@ function validaFecha($validando)
             //echo "Fecha introducida: " . $fechaIntroducida;
 
             // Compruebo si es mayor de edad
-            if($fechaIntroducida >= $fechaHace18años)
+            if($fechaIntroducida <= $fechaHace18años)
             {
                 $correcto = true;
             }
@@ -244,7 +244,7 @@ function validaFecha($validando)
                 if($validando)
                 {
                     ?>
-                    <label for="<?php echo "idFecha" ?>" style="color:red;"><?php echo "Debe introducir una fecha válida" ?></label>
+                    <label for="<?php echo "idFecha" ?>" style="color:red;"><?php echo "Fecha incorrecta (debe ser mayor de edad)" ?></label>
                     <?php
                 }
                
@@ -310,7 +310,7 @@ function validaDNI($validando)
                 if($validando)
                 {
                     ?>
-                    <label for="<?php echo "idDni" ?>" style="color:red;"><?php echo "Debe introducir un DNI válido" ?></label>
+                    <label for="<?php echo "idDni" ?>" style="color:red;"><?php echo "La letra no se corresponde con el nº del DNI" ?></label>
                     <?php
                 }
                 
