@@ -24,19 +24,52 @@
         <img src="../img/icono_ver_codigo.png" alt="suu" width="35px" height="35px"></img>
     </a>
 
-    <footer>&copy Ismael Maestre</footer>
+    <!-- PHP -->
+    <?php
+
+        // Se importa el fichero que contiene las funciones
+        require_once("./funcionesValidarForm.php");
+
+        // En funcion del botón que se haya pulsado...
+        // Si se ha pulsado algun boton (hecho submit del form)
+        if(sizeof($_REQUEST) > 0)
+        {
+
+            if((isset($_REQUEST["Editar"]) &&(!empty($_REQUEST["nombreFichero"]) &&(validaNombreFichero(false)))))
+            {
+                // Editar...
+                if($_REQUEST['boton'] == "Editar")
+                {
+                    // Abro la página de editar y le paso el nombre del fichero
+                    header("Location: EditaFichero.php?nombreFichero=" . $_REQUEST["nombreFichero"]);
+                }
+            }
+            
+
+            if((isset($_REQUEST["Leer"]) &&(!empty($_REQUEST["nombreFichero"]) &&(validaNombreFichero(false)))))
+            {
+                // Leer
+                if($_REQUEST['boton'] == "Leer")
+                {
+                    // Abro la página de leer y le paso el nombre del fichero
+                    header("Location: LeeFichero.php?nombreFichero=" . $_REQUEST["nombreFichero"]);
+                }
+            }
+        }
+
+    ?>
 
     <!-- Formulario -->
     <!-- Formulario por POST -->
     <!-- Le indico en el action que me redirija a este mismo fichero para validarlo -->
     <!-- enctype="multipart/form-data" para permitir que se puedan cargar archivos -->
-    <form action="<?php echo $_SERVER['PHP_SELF'];?>" method="post" name="formulario" id="idFormulario"  enctype="multipart/form-data">
+    <form action="<?php echo $_SERVER['PHP_SELF'];?>" method="post" name="formulario" id="idFormulario">
 
         <!-- Nombre Del fichero - Alfabetico -->
         <p>
-            <label for="idNombre">Nombre:</label>
+            <label for="idNombreFichero">Nombre del fichero:</label>
 
-            <input type="text" name="nombreFichero" id="idNombreFichero" size="40" placeholder="Nombre" value="<?php
+            <input type="text" name="nombreFichero" id="idNombreFichero" size="40" placeholder="Nombre del Fichero" value="<?php
 
                     // Si no está vacío, se guarda el texto introducido
                     validaSiVacio('nombreFichero');
@@ -46,28 +79,26 @@
                 <?php
 
                     // En caso de que esté vacío, se muestra un error
-                    imprimeError("idNombreFichero",'nombreFichero',"Debe introducir un nombre");
+                    imprimeError("idNombreFichero",'nombreFichero',"Debe introducir un nombre de fichero");
 
                     // Valida el nombre mediante un patrón
-                    validaNombre(true);
+                    validaNombreFichero(true);
                 ?>
 
         </p>
 
         <!-- Input de tipo Submit -->
         <!-- Se le pone el atributo name para evitar ataques -->
-        <input type="submit" value="Enviar" name="Enviado">
+        <input type="submit" value="Editar" name="boton">
 
         <!-- Input de tipo Submit -->
         <!-- Se le pone el atributo name para evitar ataques -->
-        <input type="submit" value="Enviar" name="Enviado">
+        <input type="submit" value="Leer" name="boton">
 
     </form>
-    <!-- PHP -->
-    <?php
 
+    <footer>&copy Ismael Maestre</footer>
 
-    ?>
 
 </body>
 
